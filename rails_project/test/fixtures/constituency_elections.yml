@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency: one
+  electionType: MyString
+  electionSubType: MyString
+  electionDate: 2017-04-23
+  electorateSize: 1
+  totalValidVotesCounted: 1
+  postalVotesIssued: 1
+  validPostalVotesCounted: 1
+
+two:
+  constituency: two
+  electionType: MyString
+  electionSubType: MyString
+  electionDate: 2017-04-23
+  electorateSize: 1
+  totalValidVotesCounted: 1
+  postalVotesIssued: 1
+  validPostalVotesCounted: 1

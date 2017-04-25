@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency: one
+  estimated_leave_vote_percent: 1.5
+  known_leave_vote_percent: 1.5
+
+two:
+  constituency: two
+  estimated_leave_vote_percent: 1.5
+  known_leave_vote_percent: 1.5

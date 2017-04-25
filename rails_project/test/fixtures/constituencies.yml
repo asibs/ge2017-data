@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pano: 1
+  name: MyString
+  type: 
+  county: MyString
+  region: one
+
+two:
+  pano: 1
+  name: MyString
+  type: 
+  county: MyString
+  region: two

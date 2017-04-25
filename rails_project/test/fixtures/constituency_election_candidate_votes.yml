@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency_elections: one
+  parties: one
+  candidate_name: MyString
+  votes: 1
+  vote_share_percent: 1.5
+
+two:
+  constituency_elections: two
+  parties: two
+  candidate_name: MyString
+  votes: 1
+  vote_share_percent: 1.5
