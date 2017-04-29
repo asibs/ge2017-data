@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency: one
+  party: one
+  predicted_swing: 1.5
+  predicted_vote_share_percent: 1.5
+
+two:
+  constituency: two
+  party: two
+  predicted_swing: 1.5
+  predicted_vote_share_percent: 1.5

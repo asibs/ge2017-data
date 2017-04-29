@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ward: one
+  known_leave_votes: 
+  known_remain_votes: 
+  known_leave_vote_percent: 1.5
+  known_remain_vote_percent: 1.5
+  contains_postal_votes: false
+
+two:
+  ward: two
+  known_leave_votes: 
+  known_remain_votes: 
+  known_leave_vote_percent: 1.5
+  known_remain_vote_percent: 1.5
+  contains_postal_votes: false
