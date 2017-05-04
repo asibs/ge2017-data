@@ -31,17 +31,17 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   end
 
   create_table "constituency_election_candidate_votes", force: :cascade do |t|
-    t.integer  "constituency_election_id"
+    t.integer  "constituency_election_result_id"
     t.string   "party_id"
     t.string   "candidate_name"
     t.boolean  "candidate_incumbent"
     t.integer  "votes"
     t.float    "vote_share_percent"
     t.float    "percent_change_from_last_ge"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["candidate_name"], name: "index_constituency_election_candidate_votes_on_candidate_name", using: :btree
-    t.index ["constituency_election_id"], name: "idx_const_electn_cand_votes_on_const_electn", using: :btree
+    t.index ["constituency_election_result_id"], name: "idx_const_electn_cand_votes_on_const_electn_rslt", using: :btree
     t.index ["party_id"], name: "idx_const_electn_cand_votes_on_parties", using: :btree
   end
 
@@ -122,6 +122,14 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.index ["constituency_election_id"], name: "idx_const_electn_prdctns_on_const_electn", using: :btree
   end
 
+  create_table "constituency_election_results", force: :cascade do |t|
+    t.integer  "constituency_election_id"
+    t.string   "description"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["constituency_election_id"], name: "idx_const_electn_rslt_on_const_electn", unique: true, using: :btree
+  end
+
   create_table "constituency_elections", force: :cascade do |t|
     t.string   "constituency_id"
     t.string   "election_type"
@@ -151,6 +159,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
 
   create_table "constituency_population_estimates", force: :cascade do |t|
     t.string   "constituency_id"
+    t.date     "estimate_date"
     t.string   "estimate_description"
     t.integer  "pop_total"
     t.integer  "pop_total_f"
@@ -340,6 +349,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["constituency_id"], name: "index_constituency_population_estimates_on_constituency_id", using: :btree
+    t.index ["estimate_date"], name: "index_constituency_population_estimates_on_estimate_date", using: :btree
     t.index ["estimate_description"], name: "index_constituency_population_estimates_on_estimate_description", using: :btree
   end
 
@@ -360,6 +370,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
 
   create_table "country_population_estimates", force: :cascade do |t|
     t.string   "country_id"
+    t.date     "estimate_date"
     t.string   "estimate_description"
     t.integer  "pop_total"
     t.integer  "pop_total_f"
@@ -549,6 +560,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["country_id"], name: "index_country_population_estimates_on_country_id", using: :btree
+    t.index ["estimate_date"], name: "index_country_population_estimates_on_estimate_date", using: :btree
     t.index ["estimate_description"], name: "index_country_population_estimates_on_estimate_description", using: :btree
   end
 
@@ -591,6 +603,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
 
   create_table "ward_population_estimates", force: :cascade do |t|
     t.string   "ward_id"
+    t.date     "estimate_date"
     t.string   "estimate_description"
     t.integer  "pop_total"
     t.integer  "pop_total_f"
@@ -779,6 +792,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.integer  "pop_90plus_m"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.index ["estimate_date"], name: "index_ward_population_estimates_on_estimate_date", using: :btree
     t.index ["estimate_description"], name: "index_ward_population_estimates_on_estimate_description", using: :btree
     t.index ["ward_id"], name: "index_ward_population_estimates_on_ward_id", using: :btree
   end
@@ -795,7 +809,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   end
 
   add_foreign_key "constituencies", "regions"
-  add_foreign_key "constituency_election_candidate_votes", "constituency_elections"
+  add_foreign_key "constituency_election_candidate_votes", "constituency_election_results"
   add_foreign_key "constituency_election_candidate_votes", "parties"
   add_foreign_key "constituency_election_party_ranks", "constituency_elections"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_1_id"
@@ -806,6 +820,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   add_foreign_key "constituency_election_predicted_votes", "constituency_election_predictions"
   add_foreign_key "constituency_election_predicted_votes", "parties"
   add_foreign_key "constituency_election_predictions", "constituency_elections"
+  add_foreign_key "constituency_election_results", "constituency_elections"
   add_foreign_key "constituency_elections", "constituencies"
   add_foreign_key "constituency_eu_votes", "constituencies"
   add_foreign_key "constituency_population_estimates", "constituencies"

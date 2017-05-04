@@ -56,10 +56,10 @@ constituencies.each do |constituency|
       prediction_description: "Remain/Leave vote share swing predictions (post-2015 byelections)")
 
   parties.each do |party|
-    ge_2015_election_result = ConstituencyElectionCandidateVote.find_by(constituency_election: ge_2015_election, party_id: party)
+    ge_2015_election_candidate_vote = ConstituencyElectionCandidateVote.find_by(constituency_election_result: ge_2015_election.result, party_id: party)
 
     predicted_swing = party_lines[party].forecast(constituency.eu_vote.leave_vote_percent_to_use)
-    predicted_vote_share_percent = [(ge_2015_election_result.try(:vote_share_percent) || 0) + predicted_swing, 0].max
+    predicted_vote_share_percent = [(ge_2015_election_candidate_vote.try(:vote_share_percent) || 0) + predicted_swing, 0].max
 
     ConstituencyElectionPredictedVote.create!(
         constituency_election_prediction: ge_2017_prediction,

@@ -15,7 +15,7 @@ arr_of_arrs[1,arr_of_arrs.size].each do |row|
   end
 
   parameter_hash = header_row.zip(row).to_h
-  parametr_hash[:estimate_date] = Date.new(2015,6,1)
+  parameter_hash[:estimate_date] = Date.new(2015,6,1)
   ConstituencyPopulationEstimate.create!(parameter_hash)
 
 end
