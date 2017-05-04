@@ -1,0 +1,23 @@
+<% puts "RENDERING PARTIAL CONSTITUENCY_ELECTION_PREDICTION [" + constituency_election_prediction.to_s + "]" %>
+
+<% if constituency_election_prediction %>
+
+  <h4><%= constituency_election_prediction.prediction_description %></h4>
+
+  <table class="table table-bordered party">
+    <tr>
+      <th>Party</th>
+      <th>Predicted Swing</th>
+      <th>Predicted Vote Share (%)</th>
+    </tr>
+
+    <% constituency_election_prediction.predicted_votes.sort { |a,b| b.predicted_vote_share_percent <=> a.predicted_vote_share_percent }.each do |votes| %>
+      <tr class="<%= votes.party.id %>">
+        <td><%= votes.party.name %></td>
+        <td><%= ElectionDataUtils.swing_to_s(votes.predicted_swing) %></td>
+        <td><%= votes.predicted_vote_share_percent %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsProject</title>
+    <title>RebelAlliance</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Rebel Alliance</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Home", controller: :constituencies, action: :index %></li>
+            <li><%= link_to "About", controller: :constituencies, action: :index %></li>
+            <li><%= link_to "FAQ", controller: :constituencies, action: :index %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div id="content-container">
+
+        <% flash.each do |key, value| %>
+          <%= content_tag :div, class: "alert alert-#{key} fade in text-center" do %>
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= raw value %>
+          <% end %>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+    </div>
+
+    <footer id="footer">
+      INSERT YOUR FOOTER HERE - COPYRIGHT / SOCIAL MEDIA LINKS / ETC
+    </footer>
   </body>
 </html>

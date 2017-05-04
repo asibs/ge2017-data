@@ -1,4 +1,6 @@
 class ConstituencyElectionPrediction < ApplicationRecord
   belongs_to :constituency_election
-  belongs_to :party
+
+  has_many :constituency_election_predicted_votes
+  alias_method :predicted_votes, :constituency_election_predicted_votes
 end

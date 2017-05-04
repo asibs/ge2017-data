@@ -4,7 +4,9 @@ class CreateJoinTableConstituencyWards < ActiveRecord::Migration[5.0]
       t.references :constituency, type: :string, foreign_key: true
       t.references :ward, type: :string, foreign_key: true
 
-      t.index [:constituency_id, :ward_id]
+      t.timestamps
+
+      t.index [:constituency_id, :ward_id], unique: true, name: 'idx_const_wards_on_const_and_ward'
     end
   end
 end

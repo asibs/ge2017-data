@@ -1,0 +1,30 @@
+<%# NOTE: This partial expects a CollectionProxy / array of ConstituencyElectionCandidateVotes, NOT a single instance %>
+<%# This partial is designed to render ALL the candidates / votes for a particular ConstituencyElection %>
+
+<% puts "RENDERING PARTIAL CONSTITUENCY_ELECTION_CANDIDATE_VOTES [" + constituency_election_candidate_votes.to_s + "]" %>
+
+<% if constituency_election_candidate_votes %>
+
+  <% unless constituency_election_candidate_votes.empty? %>
+    <h3>Results</h3>
+
+    <table class="table table-bordered party">
+      <tr>
+        <th>Party</th>
+        <th>Candidate Name</th>
+        <th>Vote Share (%)</th>
+        <th>Swing</th>
+      </tr>
+
+      <% constituency_election_candidate_votes.sort { |a,b| b.votes <=> a.votes }.each do |candidate_votes| %>
+        <tr class="<%= candidate_votes.party.id %>">
+          <td><%= candidate_votes.party.name %></td>
+          <td><%= candidate_votes.candidate_name %></td>
+          <td><%= candidate_votes.vote_share_percent %></td>
+          <td><%= ElectionDataUtils.swing_to_s(candidate_votes.percent_change_from_last_ge) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+<% end %>

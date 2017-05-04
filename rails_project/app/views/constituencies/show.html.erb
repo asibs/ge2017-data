@@ -1,0 +1,12 @@
+<h1><%= @constituency.name %></h1>
+
+<% @constituency.elections.sort { |a,b| b.election_date <=> a.election_date }.each do |election| %>
+  <%= render partial: "shared/constituency_election", object: election %>
+<% end %>
+
+<% @constituency.population_estimates.each do |pop_est| %>
+  <h3><%= pop_est.estimate_description %></h3>
+  <%= column_chart pop_est.population_hash, stacked: true %>
+  <%= column_chart pop_est.population_hash([[0,17], [18,25], [26,35], [36,45], [46,55], [56,65], [66,75], [76,85], [86,90]]), stacked: true %>
+  <%= pie_chart pop_est.gender_hash, library: {pieSliceText:'value-and-percentage'} %>
+<% end %>

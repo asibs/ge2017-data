@@ -1,0 +1,22 @@
+<% puts "RENDERING PARTIAL CONSTITUENCY_ELECTION [" + constituency_election.to_s + "]" %>
+
+<% if constituency_election %>
+
+  <h2><%= constituency_election.election_type.to_s + " " + constituency_election.election_date.to_s %></h2>
+
+  <% unless constituency_election.predictions.empty? %>
+    <h3>Predictions</h3>
+    <div class="row">
+
+    <% constituency_election.predictions.sort { |a,b| a.prediction_description <=> b.prediction_description }.each do |prediction| %>
+      <div class="col-md-12 col-lg-6">
+      <%= render partial: "shared/constituency_election_prediction", object: prediction %>
+      </div>
+    <% end %>
+
+    </div>
+  <% end %>
+
+  <%= render partial: "shared/constituency_election_candidate_votes", object: constituency_election.candidate_votes %>
+
+<% end %>

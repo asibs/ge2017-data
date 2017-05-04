@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency: one
+  description: MyString
+  total: 
+  f_total: 
+  m_total: 
+
+two:
+  constituency: two
+  description: MyString
+  total: 
+  f_total: 
+  m_total: 
