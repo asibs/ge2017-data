@@ -3,24 +3,24 @@ table.party {
   th { background-color: #FDFDFD }
 
   tr { background-color: #F0F0F0 }
-  tr:hover { background-color: #E0E0E0 }
+  tr:hover { filter: brightness(98%) }
 
-  tr.CON { background-color: #CCCCFF }
-  tr.CON:hover { background-color: #9999FF }
+  .CON { background-color: #CCCCFF }
+//  .CON:hover { background-color: #9999FF }
 
-  tr.LAB { background-color: #FFCCCC }
-  tr.LAB:hover { background-color: #FF9999 }
+  .LAB { background-color: #FFCCCC }
+//  .LAB:hover { background-color: #FF9999 }
 
-  tr.LD { background-color: #FFEEAA }
-  tr.LD:hover { background-color: #FFDD77 }
+  .LD { background-color: #FFEEAA }
+//  .LD:hover { background-color: #FFDD77 }
 
-  tr.UKIP { background-color: #DDAAFF }
-  tr.UKIP:hover { background-color: #DD77FF }
+  .UKIP { background-color: #DDAAFF }
+//  .UKIP:hover { background-color: #DD77FF }
 
-  tr.GRN { background-color: #CCFFCC }
-  tr.GRN:hover { background-color: #99EE99 }
+  .GRN { background-color: #CCFFCC }
+//  .GRN:hover { background-color: #99EE99 }
 
-  tr.SNP { background-color: #FFFFCC }
-  tr.SNP:hover { background-color: #EEEE99 }
+  .SNP { background-color: #FFFFCC }
+//  .SNP:hover { background-color: #EEEE99 }
 
 }
