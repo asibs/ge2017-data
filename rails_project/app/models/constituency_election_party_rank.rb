@@ -1,5 +1,5 @@
 class ConstituencyElectionPartyRank < ApplicationRecord
-  belongs_to :constituency_election
+  belongs_to :election_rankable, :polymorphic => true
 
   belongs_to :party_1, class_name: "Party"
   belongs_to :party_2, class_name: "Party"

@@ -5,7 +5,7 @@ def create_election_result_rank(election)
   candidate_votes = election.candidate_votes.to_a.sort { |a,b| b.votes <=> a.votes }
   if !candidate_votes.empty? then
 
-    params_hash = { constituency_election_id: election.id, prediction: false,
+    params_hash = { election_rankable: election.result, prediction: false,
                     description: "#{election.description} Results" }
     (0..4).each do |i|
       if !candidate_votes[i].nil? then
@@ -26,7 +26,7 @@ def create_election_prediction_rank(prediction)
   predicted_votes = prediction.predicted_votes.to_a.sort { |a,b| b.predicted_vote_share_percent <=> a.predicted_vote_share_percent }
   if !predicted_votes.empty? then
 
-    params_hash = { constituency_election_id: prediction.constituency_election.id, prediction: true,
+    params_hash = { election_rankable: prediction, prediction: true,
                     description: "#{prediction.constituency_election.description} #{prediction.prediction_description}" }
     (0..4).each do |i|
       if !predicted_votes[i].nil? then

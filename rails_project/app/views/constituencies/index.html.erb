@@ -22,8 +22,10 @@
   </tr>
 
   <% @constituencies.each do |c| %>
+    last_election = c.elections_with_results
+
     <tr>
-      
+      <td>c.name</td>
     </tr>
   <% end %>
 </table>

@@ -1,7 +1,7 @@
 class CreateConstituencyElectionPartyRanks < ActiveRecord::Migration[5.0]
   def change
     create_table :constituency_election_party_ranks do |t|
-      t.references :constituency_election, foreign_key: true, index: { name: 'idx_const_electn_pty_rnk_on_const_electn_id' }
+      t.references :election_rankable, polymorphic: true, index: { name: 'idx_const_electn_pty_rnk_on_const_electn_id', unique: true }
       t.boolean :prediction, index: true
       t.string :description, index: true
 

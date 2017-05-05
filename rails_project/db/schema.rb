@@ -46,7 +46,8 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   end
 
   create_table "constituency_election_party_ranks", force: :cascade do |t|
-    t.integer  "constituency_election_id"
+    t.string   "election_rankable_type"
+    t.integer  "election_rankable_id"
     t.boolean  "prediction"
     t.string   "description"
     t.string   "party_1_id"
@@ -76,8 +77,8 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.float    "party_5_vote_share_percent_behind"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.index ["constituency_election_id"], name: "idx_const_electn_pty_rnk_on_const_electn_id", using: :btree
     t.index ["description"], name: "index_constituency_election_party_ranks_on_description", using: :btree
+    t.index ["election_rankable_type", "election_rankable_id"], name: "idx_const_electn_pty_rnk_on_const_electn_id", unique: true, using: :btree
     t.index ["party_1_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_1_vote_percent", using: :btree
     t.index ["party_1_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_1_vote_percent_behind", using: :btree
     t.index ["party_1_votes"], name: "idx_const_electn_pty_rnk_on_pty_1_vote", using: :btree
@@ -811,7 +812,6 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   add_foreign_key "constituencies", "regions"
   add_foreign_key "constituency_election_candidate_votes", "constituency_election_results"
   add_foreign_key "constituency_election_candidate_votes", "parties"
-  add_foreign_key "constituency_election_party_ranks", "constituency_elections"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_1_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_2_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_3_id"
