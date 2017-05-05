@@ -58,6 +58,14 @@ module PopulationEstimate
     data
   end
 
+  def gender_percentage(gender)
+    return 0 unless [:f, :m].include? gender
+
+    method_name = "pop_total_#{gender}"
+
+    self.public_send(method_name).to_f / pop_total * 100
+  end
+
 
   private
     def get_method_name(age, gender)
