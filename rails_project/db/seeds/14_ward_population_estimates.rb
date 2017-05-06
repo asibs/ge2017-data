@@ -1,3 +1,6 @@
+# Original data from:
+# https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental
+
 require 'csv'
 
 puts "Creating Ward Population Estimates"
@@ -6,16 +9,20 @@ arr_of_arrs = CSV.read(File.join(Rails.root, 'db', 'seeds', 'csv_data', '14_ward
 
 header_row = arr_of_arrs[0]
 
-arr_of_arrs[1,arr_of_arrs.size-1].each_with_index do |row,i|
+arr_of_arrs[1,arr_of_arrs.size-1].each do |row|
 
-  # Ensure all data is numeric, aside from 1st 2 cols
-  # (ward_id and estimate_description)
+  parameters_hash = {}
+
+  # Find Ward based on ID (column 0)
+  parameters_hash[:area] = Ward.find(row[0])
+  parameters_hash[:estimate_description] = row[1]
+  parameters_hash[:estimate_date] = Date.new(2015,6,1)
+
+  # Ensure all other data is numeric
   (2..row.size-1).each do |i|
-    row[i] = Integer(row[i].gsub(/,/, ""))
+    parameters_hash[header_row[i]] = Integer(row[i].gsub(/,/, ""))
   end
 
-  parameter_hash = header_row.zip(row).to_h
-  parameter_hash[:estimate_date] = Date.new(2015,6,1)
-  WardPopulationEstimate.create!(parameter_hash)
+  AreaPopulationEstimate.create!(parameters_hash)
 
 end

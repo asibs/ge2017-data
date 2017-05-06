@@ -1,10 +1,10 @@
 $(document).ready(function() {
     // Initialise datatables
     var table = $('table#constituencies').DataTable( {
-        "columnDefs": [ {
-            "visible": false,
-            "targets": -1
-        } ]
+        // "columnDefs": [ {
+        //     "visible": false,
+        //     "targets": -1
+        // } ]
     } );
 } );
 

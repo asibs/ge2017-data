@@ -6,8 +6,7 @@ class Constituency < ApplicationRecord
   has_many :constituency_wards
   has_many :wards, through: :constituency_wards
 
-  has_many :constituency_population_estimates, -> { order(estimate_date: :desc) }
-  alias_method :population_estimates, :constituency_population_estimates
+  has_many :population_estimates, -> { order(estimate_date: :desc) }, as: :area, class_name: "AreaPopulationEstimate"
 
   has_many :constituency_elections
   alias_method :elections, :constituency_elections

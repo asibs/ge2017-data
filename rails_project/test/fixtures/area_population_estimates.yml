@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: one
+  area_type: Area
+  estimate_date: 2017-05-06
+  estimate_description: MyString
+  pop_total: 1
+  pop_total_f: 1
+  pop_total_m: 1
+
+two:
+  area: two
+  area_type: Area
+  estimate_date: 2017-05-06
+  estimate_description: MyString
+  pop_total: 1
+  pop_total_f: 1
+  pop_total_m: 1
