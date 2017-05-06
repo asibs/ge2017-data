@@ -30,21 +30,6 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.index ["region_id"], name: "index_constituencies_on_region_id", using: :btree
   end
 
-  create_table "constituency_election_candidate_votes", force: :cascade do |t|
-    t.integer  "constituency_election_result_id"
-    t.string   "party_id"
-    t.string   "candidate_name"
-    t.boolean  "candidate_incumbent"
-    t.integer  "votes"
-    t.float    "vote_share_percent"
-    t.float    "percent_change_from_last_ge"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.index ["candidate_name"], name: "index_constituency_election_candidate_votes_on_candidate_name", using: :btree
-    t.index ["constituency_election_result_id"], name: "idx_const_electn_cand_votes_on_const_electn_rslt", using: :btree
-    t.index ["party_id"], name: "idx_const_electn_cand_votes_on_parties", using: :btree
-  end
-
   create_table "constituency_election_party_ranks", force: :cascade do |t|
     t.string   "election_rankable_type"
     t.integer  "election_rankable_id"
@@ -100,18 +85,6 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.index ["party_5_votes"], name: "idx_const_electn_pty_rnk_on_pty_5_vote", using: :btree
     t.index ["party_5_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_5_vote_behind", using: :btree
     t.index ["prediction"], name: "index_constituency_election_party_ranks_on_prediction", using: :btree
-  end
-
-  create_table "constituency_election_predicted_votes", force: :cascade do |t|
-    t.integer  "constituency_election_prediction_id"
-    t.string   "party_id"
-    t.float    "predicted_swing"
-    t.float    "predicted_vote_share_percent"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["constituency_election_prediction_id", "party_id"], name: "idx_const_electn_prdctn_votes_on_const_electn_and_dscrptn", unique: true, using: :btree
-    t.index ["constituency_election_prediction_id"], name: "idx_const_electn_predicted_votes_on_const_electn", using: :btree
-    t.index ["party_id"], name: "idx_const_electn_predicted_votes_on_parties", using: :btree
   end
 
   create_table "constituency_election_predictions", force: :cascade do |t|
@@ -825,15 +798,11 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   end
 
   add_foreign_key "constituencies", "regions"
-  add_foreign_key "constituency_election_candidate_votes", "constituency_election_results"
-  add_foreign_key "constituency_election_candidate_votes", "parties"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_1_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_2_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_3_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_4_id"
   add_foreign_key "constituency_election_party_ranks", "parties", column: "party_5_id"
-  add_foreign_key "constituency_election_predicted_votes", "constituency_election_predictions"
-  add_foreign_key "constituency_election_predicted_votes", "parties"
   add_foreign_key "constituency_election_predictions", "constituency_elections"
   add_foreign_key "constituency_election_results", "constituency_elections"
   add_foreign_key "constituency_election_votes", "parties"
