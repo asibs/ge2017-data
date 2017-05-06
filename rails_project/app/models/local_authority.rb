@@ -1,2 +1,2 @@
-class LocalAuthority < ApplicationRecord
+class LocalAuthority < Area
 end

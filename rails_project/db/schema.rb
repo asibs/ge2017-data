@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506152722) do
+ActiveRecord::Schema.define(version: 20170506195330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,18 @@ ActiveRecord::Schema.define(version: 20170506152722) do
     t.index ["area_type", "area_id"], name: "idx_area_pop_est_on_area", using: :btree
     t.index ["estimate_date"], name: "index_area_population_estimates_on_estimate_date", using: :btree
     t.index ["estimate_description"], name: "index_area_population_estimates_on_estimate_description", using: :btree
+  end
+
+  create_table "area_unemployments", force: :cascade do |t|
+    t.string   "area_type"
+    t.string   "area_id"
+    t.date     "statistic_date"
+    t.integer  "unemployed_count"
+    t.float    "unemployed_percent"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["area_type", "area_id"], name: "idx_area_unemployment_on_area", using: :btree
+    t.index ["statistic_date"], name: "idx_area_unemployment_on_stat_date", using: :btree
   end
 
   create_table "constituencies", id: :string, force: :cascade do |t|

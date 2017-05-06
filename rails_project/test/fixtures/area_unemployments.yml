@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: one
+  area_type: Area
+  statistic_date: 2017-05-06
+  unemployed_count: 1
+  unemployed_percent: 1.5
+
+two:
+  area: two
+  area_type: Area
+  statistic_date: 2017-05-06
+  unemployed_count: 1
+  unemployed_percent: 1.5
