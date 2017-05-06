@@ -1,7 +1,7 @@
 module ElectionDataUtils
 
   # Add '+' on front of positive numbers, leave 0 with nothing, negatives will already get '-'
-  def self.swing_to_s(swing)
+  def self.percent_change_to_s(swing)
     return "Unknown" if (swing.nil? || swing == "")
 
     begin

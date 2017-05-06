@@ -2,22 +2,26 @@
 
 <% if constituency_election_prediction %>
 
-  <h4><%= constituency_election_prediction.prediction_description %></h4>
+  <% votes = constituency_election_prediction.votes %>
+  <% unless votes.empty? %>
+    <h4><%= constituency_election_prediction.prediction_description %></h4>
 
-  <table class="table table-bordered party">
-    <tr>
-      <th>Party</th>
-      <th>Predicted Swing</th>
-      <th>Predicted Vote Share (%)</th>
-    </tr>
-
-    <% constituency_election_prediction.predicted_votes.sort { |a,b| b.predicted_vote_share_percent <=> a.predicted_vote_share_percent }.each do |votes| %>
-      <tr class="<%= votes.party.id %>">
-        <td><%= votes.party.name %></td>
-        <td><%= ElectionDataUtils.swing_to_s(votes.predicted_swing) %></td>
-        <td><%= votes.predicted_vote_share_percent %></td>
+    <table class="table table-bordered party">
+      <tr>
+        <th>Party</th>
+        <th>Predicted Swing</th>
+        <th>Predicted Vote Share (%)</th>
       </tr>
-    <% end %>
-  </table>
+
+      <% votes.sort { |a,b| b.vote_share_percent <=> a.vote_share_percent }.each do |vote| %>
+        <tr class="<%= vote.party.id %>">
+          <td><%= vote.party.name %></td>
+          <td><%= ElectionDataUtils.percent_change_to_s(vote.percent_change_from_last_ge) %></td>
+          <td><%= vote.vote_share_percent %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% end %>
 
 <% end %>

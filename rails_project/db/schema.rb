@@ -131,6 +131,21 @@ ActiveRecord::Schema.define(version: 20170503211255) do
     t.index ["constituency_election_id"], name: "idx_const_electn_rslt_on_const_electn", unique: true, using: :btree
   end
 
+  create_table "constituency_election_votes", force: :cascade do |t|
+    t.string   "election_voteable_type"
+    t.integer  "election_voteable_id"
+    t.string   "party_id"
+    t.string   "candidate_name"
+    t.boolean  "candidate_incumbent"
+    t.integer  "votes"
+    t.float    "vote_share_percent"
+    t.float    "percent_change_from_last_ge"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["election_voteable_type", "election_voteable_id"], name: "idx_const_electn_votes_on_const_electn_voteable", using: :btree
+    t.index ["party_id"], name: "idx_const_electn_votes_on_pty", using: :btree
+  end
+
   create_table "constituency_elections", force: :cascade do |t|
     t.string   "constituency_id"
     t.string   "election_type"
@@ -821,6 +836,7 @@ ActiveRecord::Schema.define(version: 20170503211255) do
   add_foreign_key "constituency_election_predicted_votes", "parties"
   add_foreign_key "constituency_election_predictions", "constituency_elections"
   add_foreign_key "constituency_election_results", "constituency_elections"
+  add_foreign_key "constituency_election_votes", "parties"
   add_foreign_key "constituency_elections", "constituencies"
   add_foreign_key "constituency_eu_votes", "constituencies"
   add_foreign_key "constituency_population_estimates", "constituencies"

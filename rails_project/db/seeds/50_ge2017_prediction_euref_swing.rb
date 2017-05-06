@@ -29,7 +29,7 @@ post_ge2015_byelections = ConstituencyElection.where(election_type: "By Election
 
 post_ge2015_byelections.each do |byelection|
   if (byelection.constituency.region.country_id == 'England') then
-    byelection.candidate_votes.each do |candidate_vote|
+    byelection.actual_votes.each do |candidate_vote|
       if parties.include?(candidate_vote.party_id) then
         party_coords[candidate_vote.party_id][:x].push(byelection.constituency.constituency_eu_vote.leave_vote_percent_to_use)
         party_coords[candidate_vote.party_id][:y].push(candidate_vote.percent_change_from_last_ge)
@@ -56,15 +56,15 @@ constituencies.each do |constituency|
       prediction_description: "Remain/Leave vote share swing predictions (post-2015 byelections)")
 
   parties.each do |party|
-    ge_2015_election_candidate_vote = ConstituencyElectionCandidateVote.find_by(constituency_election_result: ge_2015_election.result, party_id: party)
+    ge_2015_election_vote = ConstituencyElectionVote.find_by(election_voteable: ge_2015_election.result, party_id: party)
 
     predicted_swing = party_lines[party].forecast(constituency.eu_vote.leave_vote_percent_to_use)
-    predicted_vote_share_percent = [(ge_2015_election_candidate_vote.try(:vote_share_percent) || 0) + predicted_swing, 0].max
+    predicted_vote_share_percent = [(ge_2015_election_vote.try(:vote_share_percent) || 0) + predicted_swing, 0].max
 
-    ConstituencyElectionPredictedVote.create!(
-        constituency_election_prediction: ge_2017_prediction,
+    ConstituencyElectionVote.create!(
+        election_voteable: ge_2017_prediction,
         party_id: party,
-        predicted_swing: predicted_swing,
-        predicted_vote_share_percent: predicted_vote_share_percent)
+        vote_share_percent: predicted_vote_share_percent,
+        percent_change_from_last_ge: predicted_swing)
   end
 end

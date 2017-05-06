@@ -1,0 +1,28 @@
+<% puts "RENDERING PARTIAL CONSTITUENCY_ELECTION_RESULT [" + constituency_election_result.to_s + "]" %>
+
+<% if constituency_election_result %>
+
+  <% votes = constituency_election_result.votes %>
+  <% unless votes.empty? %>
+    <h3>Results</h3>
+
+    <table class="table table-bordered party">
+      <tr>
+        <th>Party</th>
+        <th>Candidate Name</th>
+        <th>Vote Share (%)</th>
+        <th>Swing</th>
+      </tr>
+
+      <% votes.sort { |a,b| b.votes <=> a.votes }.each do |vote| %>
+        <tr class="<%= vote.party.id %>">
+          <td><%= vote.party.name %></td>
+          <td><%= vote.candidate_name %></td>
+          <td><%= vote.vote_share_percent %></td>
+          <td><%= ElectionDataUtils.percent_change_to_s(vote.percent_change_from_last_ge) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+<% end %>

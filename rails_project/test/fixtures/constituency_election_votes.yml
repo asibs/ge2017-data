@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  election_voteable: one
+  party: one
+  candidate_name: one
+  candidate_incumbant: false
+  votes: 1
+  vote_share_percent: 1.5
+  percent_change_from_last_ge: 1.5
+
+two:
+  election_voteable: two
+  party: two
+  candidate_name: two
+  candidate_incumbant: false
+  votes: 1
+  vote_share_percent: 1.5
+  percent_change_from_last_ge: 1.5
