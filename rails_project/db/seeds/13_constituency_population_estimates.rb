@@ -14,10 +14,7 @@ arr_of_arrs[1,arr_of_arrs.size-1].each do |row|
   parameters_hash = {}
 
   # Find Constituency based on ID (column 0)
-  con = Constituency.find(row[0])
-  parameters_hash[:area] = con
-  p row[0]
-  p con
+  parameters_hash[:area] = Constituency.find(row[0])
   parameters_hash[:estimate_description] = row[1]
   parameters_hash[:estimate_date] = Date.new(2015,6,1)
 

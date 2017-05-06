@@ -15,6 +15,19 @@ ActiveRecord::Schema.define(version: 20170506152722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "area_eu_votes", force: :cascade do |t|
+    t.string   "area_type"
+    t.string   "area_id"
+    t.boolean  "contains_postal_votes"
+    t.integer  "actual_leave_votes"
+    t.integer  "actual_remain_votes"
+    t.float    "actual_leave_vote_percent"
+    t.float    "estimated_leave_vote_percent"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["area_type", "area_id"], name: "idx_area_eu_vote_on_area", using: :btree
+  end
+
   create_table "area_population_estimates", force: :cascade do |t|
     t.string   "area_type"
     t.string   "area_id"

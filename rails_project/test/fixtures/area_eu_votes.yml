@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: one
+  area_type: Area
+  contains_postal_votes: false
+  actual_leave_votes: 1
+  actual_remain_votes: 1
+  actual_leave_vote_percent: 1.5
+  estimated_leave_vote_percent: 1.5
+
+two:
+  area: two
+  area_type: Area
+  contains_postal_votes: false
+  actual_leave_votes: 1
+  actual_remain_votes: 1
+  actual_leave_vote_percent: 1.5
+  estimated_leave_vote_percent: 1.5

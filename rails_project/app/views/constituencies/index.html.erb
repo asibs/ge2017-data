@@ -45,7 +45,7 @@
         <td><%= last_election_rank.party_2_votes %></td>
         <td><%= last_election_rank.party_3.name %></td>
         <td><%= last_election_rank.party_3_votes %></td>
-        <td><%= eu_vote ? eu_vote.leave_vote_percent_to_use.round(2) : "Unknown" %></td>
+        <td><%= eu_vote ? eu_vote.leave_vote_percent.round(2) : "Unknown" %></td>
         <td><%= last_pop_est ? last_pop_est.gender_percentage(:f).round(2) : "Unknown" %></td>
         <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:0,max_age:17).round(2) : "Unknown" %></td>
         <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:18,max_age:35).round(2) : "Unknown" %></td>
