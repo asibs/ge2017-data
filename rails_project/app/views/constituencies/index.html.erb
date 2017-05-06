@@ -1,44 +1,58 @@
 <h1>Constituencies</h1>
 
-<table class="table table-bordered party">
-  <tr>
-    <th></th>
-    <th colspan="3">Previous Election</th>
-    <th></th>
-    <th colspan="6">Population Estimates</th>
-  </tr>
-  <tr>
-    <th>Name</th>
-    <th>Party</th>
-    <th>Vote Share</th>
-    <th>Majority</th>
-    <th>Brexit Leave Vote</th>
-    <th>Gender Ratio</th>
-    <th>Under 18s</th>
-    <th>18-35</th>
-    <th>36-50</th>
-    <th>51-65</th>
-    <th>66+</th>
-  </tr>
-
-  <% @constituencies.each do |c| %>
-    <% last_election_rank = c.elections_with_results.first.result.party_rank %>
-    <% party = last_election_rank.party_1 %>
-    <% eu_vote = c.eu_vote %>
-    <% last_pop_est = c.population_estimates.first %>
-
+<table id="constituencies" class="table table-bordered party order-column" cellspacing="0" width="100%">
+  <thead>
     <tr>
-      <td><%= c.name %></td>
-      <td class="<%= party.id %>"><%= last_election_rank.party_1.name %></td>
-      <td class="<%= party.id %>"><%= "#{last_election_rank.party_1_vote_share_percent.round(2)}%" %></td>
-      <td class="<%= party.id %>"><%= "#{last_election_rank.party_2_vote_share_percent_behind.round(2)}%" %></td>
-      <td><%= eu_vote ? ("#{eu_vote.leave_vote_percent_to_use.round(2)}%") : "Unknown" %></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.gender_percentage(:f).round(2)}% F") : "Unknown"%></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.population_percentage(min_age:0,max_age:17).round(2)}%") : "Unknown"%></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.population_percentage(min_age:18,max_age:35).round(2)}%") : "Unknown"%></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.population_percentage(min_age:36,max_age:50).round(2)}%") : "Unknown"%></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.population_percentage(min_age:51,max_age:65).round(2)}%") : "Unknown"%></td>
-      <td><%= last_pop_est ? ("#{last_pop_est.population_percentage(min_age:66,max_age:90).round(2)}%") : "Unknown"%></td>
+      <th></th>
+      <th colspan="8">Previous Election</th>
+      <th></th>
+      <th colspan="6">Population Estimates</th>
     </tr>
-  <% end %>
+    <tr>
+      <th>Name</th>
+      <th>Winner</th>
+      <th>Vote Share (%)</th>
+      <th>Majority (%)</th>
+      <th>Majority</th>
+      <th>2nd Place</th>
+      <th>2nd Place Votes</th>
+      <th>3rd Place</th>
+      <th>3rd Place Votes</th>
+      <th>Brexit Leave Vote (%)</th>
+      <th>Gender Ratio (% Female)</th>
+      <th>Under 18s (%)</th>
+      <th>18-35 (%)</th>
+      <th>36-50 (%)</th>
+      <th>51-65 (%)</th>
+      <th>66+ (%)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @constituencies.each do |c| %>
+      <% last_election_rank = c.elections_with_results.first.result.party_rank %>
+      <% party = last_election_rank.party_1 %>
+      <% eu_vote = c.eu_vote %>
+      <% last_pop_est = c.population_estimates.first %>
+
+      <tr>
+        <td><%= c.name %></td>
+        <td class="<%= party.id %>"><%= last_election_rank.party_1.name %></td>
+        <td class="<%= party.id %>"><%= last_election_rank.party_1_vote_share_percent.round(2) %></td>
+        <td class="<%= party.id %>"><%= last_election_rank.party_2_vote_share_percent_behind.round(2) %></td>
+        <td class="<%= party.id %>"><%= last_election_rank.party_2_votes_behind %></td>
+        <td><%= last_election_rank.party_2.name %></td>
+        <td><%= last_election_rank.party_2_votes %></td>
+        <td><%= last_election_rank.party_3.name %></td>
+        <td><%= last_election_rank.party_3_votes %></td>
+        <td><%= eu_vote ? eu_vote.leave_vote_percent_to_use.round(2) : "Unknown" %></td>
+        <td><%= last_pop_est ? last_pop_est.gender_percentage(:f).round(2) : "Unknown"%></td>
+        <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:0,max_age:17).round(2) : "Unknown"%></td>
+        <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:18,max_age:35).round(2) : "Unknown"%></td>
+        <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:36,max_age:50).round(2) : "Unknown"%></td>
+        <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:51,max_age:65).round(2) : "Unknown"%></td>
+        <td><%= last_pop_est ? last_pop_est.population_percentage(min_age:66,max_age:90).round(2) : "Unknown"%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

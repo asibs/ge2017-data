@@ -1,3 +1,6 @@
+# Original data from:
+# http://geoportal.statistics.gov.uk/datasets?q=Ward+to+Westminster+Parliamentary+Constituency&sort_by=relevance
+
 
 puts "Creating Constituency Wards"
 

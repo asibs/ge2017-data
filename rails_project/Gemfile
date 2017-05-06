@@ -61,3 +61,6 @@ gem 'linefit', '~> 0.3.4'
 
 # Use chartkick for graphing
 gem 'chartkick', '~> 2.2'
+
+# Use jquery database tables for showing / sorting tables
+gem 'jquery-datatables-rails', '~> 3.4.0'
