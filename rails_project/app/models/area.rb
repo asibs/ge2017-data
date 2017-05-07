@@ -6,4 +6,6 @@ class Area < ApplicationRecord
   has_many :population_estimates, -> { order(estimate_date: :desc) }, as: :area, class_name: "AreaPopulationEstimate"
 
   has_many :unemployment_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaUnemployment"
+
+  has_many :out_of_work_benefit_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaOutOfWorkBenefit"
 end

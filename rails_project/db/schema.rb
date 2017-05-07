@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506195330) do
+ActiveRecord::Schema.define(version: 20170507010159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20170506195330) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["area_type", "area_id"], name: "idx_area_eu_vote_on_area", using: :btree
+  end
+
+  create_table "area_out_of_work_benefits", force: :cascade do |t|
+    t.string   "area_type"
+    t.string   "area_id"
+    t.date     "statistic_date"
+    t.integer  "oow_benefits_count"
+    t.float    "oow_benefits_percent"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["area_type", "area_id"], name: "idx_area_oow_benefits_on_area", using: :btree
+    t.index ["statistic_date"], name: "idx_area_oow_benefits_on_stat_date", using: :btree
   end
 
   create_table "area_population_estimates", force: :cascade do |t|
