@@ -1,6 +1,9 @@
-puts "Creating Countries"
+puts "Creating States / Countries"
 
-Country.create!(id: 'England')
-Country.create!(id: 'Northern Ireland')
-Country.create!(id: 'Scotland')
-Country.create!(id: 'Wales')
+# UK is a 'soveriegn state' made up of 4 constituent 'countries'
+uk = State.create!(id: 'UK')
+
+Country.create!(id: 'England', state: uk)
+Country.create!(id: 'Northern Ireland', state: uk)
+Country.create!(id: 'Scotland', state: uk)
+Country.create!(id: 'Wales', state: uk)

@@ -379,8 +379,10 @@ ActiveRecord::Schema.define(version: 20170506195330) do
   end
 
   create_table "countries", id: :string, force: :cascade do |t|
+    t.string   "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_countries_on_state_id", using: :btree
   end
 
   create_table "local_authorities", id: :string, force: :cascade do |t|
@@ -406,6 +408,11 @@ ActiveRecord::Schema.define(version: 20170506195330) do
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id", using: :btree
     t.index ["name"], name: "index_regions_on_name", using: :btree
+  end
+
+  create_table "states", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ward_eu_votes", force: :cascade do |t|
@@ -444,6 +451,7 @@ ActiveRecord::Schema.define(version: 20170506195330) do
   add_foreign_key "constituency_eu_votes", "constituencies"
   add_foreign_key "constituency_wards", "constituencies"
   add_foreign_key "constituency_wards", "wards"
+  add_foreign_key "countries", "states"
   add_foreign_key "regions", "countries"
   add_foreign_key "ward_eu_votes", "wards"
   add_foreign_key "wards", "local_authorities"
