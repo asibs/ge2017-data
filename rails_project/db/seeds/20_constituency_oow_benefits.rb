@@ -1,6 +1,8 @@
 # Original data from:
 # https://public.tableau.com/profile/house.of.commons.library.statistics#!/vizhome/Outofworkbenefits/Data
 
+puts "Creating Constituency Out Of Work Benefit Rates"
+
 AreaOutOfWorkBenefit.create!(area: Constituency.find('E14000530'), statistic_date: '2010-05-01', oow_benefits_count: 5410, oow_benefits_percent: 7.7)
 AreaOutOfWorkBenefit.create!(area: Constituency.find('E14000531'), statistic_date: '2010-05-01', oow_benefits_count: 5200, oow_benefits_percent: 11.2)
 AreaOutOfWorkBenefit.create!(area: Constituency.find('E14000532'), statistic_date: '2010-05-01', oow_benefits_count: 4460, oow_benefits_percent: 7.4)

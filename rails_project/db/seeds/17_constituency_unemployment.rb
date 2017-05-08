@@ -3,6 +3,8 @@
 # Note, in order to keep data size down, have reduced this to store data only every 3 months (March, June, September, December)
 # This should still be enough to show historic trends, and reduces the data to store by two thirds
 
+puts "Creating Constituency Unemployment Rates"
+
 AreaUnemployment.create!(area: Constituency.find('E14000530'), statistic_date: '2010-06-01', unemployed_count: 1628, unemployed_percent: 2.812578)
 AreaUnemployment.create!(area: Constituency.find('E14000531'), statistic_date: '2010-06-01', unemployed_count: 1756, unemployed_percent: 4.9052688)
 AreaUnemployment.create!(area: Constituency.find('E14000532'), statistic_date: '2010-06-01', unemployed_count: 1250, unemployed_percent: 2.591745)
