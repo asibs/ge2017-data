@@ -10,4 +10,11 @@ class Constituency < Area
   alias_method :elections, :constituency_elections
 
   has_many :elections_with_results, -> { joins(:constituency_election_result).order(election_date: :desc) }, class_name: "ConstituencyElection"
+
+  has_one :constituency_summary
+  alias_method :summary, :constituency_summary
+
+  def area_type
+    "Constituency"
+  end
 end

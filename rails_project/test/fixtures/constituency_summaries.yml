@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constituency: one
+  prev_election_date: 2017-05-09
+  prev_election_type: MyString
+
+two:
+  constituency: two
+  prev_election_date: 2017-05-09
+  prev_election_type: MyString

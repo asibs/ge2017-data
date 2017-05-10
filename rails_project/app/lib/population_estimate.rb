@@ -1,5 +1,11 @@
 module PopulationEstimate
 
+  STANDARD_AGE_RANGES = [ {name: "Under 18", min_age:0, max_age:17},
+                          {name: "18 - 34", min_age:18, max_age:34},
+                          {name: "35 - 49", min_age:35, max_age:49},
+                          {name: "50 - 64", min_age:50, max_age:64},
+                          {name: "65 Plus", min_age:65, max_age:90} ]
+
   def population(options = {})
     min_age = options[:min_age] || 0
     max_age = options[:max_age] || 90
@@ -24,6 +30,12 @@ module PopulationEstimate
   def population_percentage(options = {})
     population = population(options)
     population.to_f / pop_total * 100
+  end
+
+
+  def population_string(options = {})
+    puts "#{population(options)} (#{population_percentage(options).round(2)}%)"
+    "#{population(options)} (#{population_percentage(options).round(2)}%)"
   end
 
 

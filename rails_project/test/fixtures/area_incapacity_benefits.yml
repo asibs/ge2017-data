@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: one
+  area_type: Area
+  statistic_date: 2017-05-08
+  incapacity_benefits_count: 1
+  incapacity_benefits_percent: 1
+
+two:
+  area: two
+  area_type: Area
+  statistic_date: 2017-05-08
+  incapacity_benefits_count: 1
+  incapacity_benefits_percent: 1

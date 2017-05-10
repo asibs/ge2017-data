@@ -657,7 +657,7 @@ W07000079_ge2015 = ConstituencyElection.create!(constituency_id: 'W07000079', el
 W07000080_ge2015 = ConstituencyElection.create!(constituency_id: 'W07000080', election_type: 'General Election', election_sub_type: '', election_date: '2015-05-07', electorate_size: 76006, total_valid_votes_counted: 46667, postal_votes_issued: 13202, valid_postal_votes_counted: 10408)
 
 
-puts "Creating GE2010 Contituency Election Results"
+puts "Creating GE2015 Contituency Election Results"
 
 E14000530_ge2015_result = ConstituencyElectionResult.create!(constituency_election_id: E14000530_ge2015.id, description: 'Electoral Commission results data')
 E14000531_ge2015_result = ConstituencyElectionResult.create!(constituency_election_id: E14000531_ge2015.id, description: 'Electoral Commission results data')

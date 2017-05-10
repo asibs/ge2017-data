@@ -7,7 +7,11 @@ class Area < ApplicationRecord
 
   has_many :unemployment_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaUnemployment"
 
+  has_many :youth_unemployment_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaYouthUnemployment"
+
   has_many :out_of_work_benefit_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaOutOfWorkBenefit"
+
+  has_many :incapacity_benefit_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaIncapacityBenefit"
 
   has_many :median_wages, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaMedianWage"
 end
