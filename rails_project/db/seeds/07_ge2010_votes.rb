@@ -4,7 +4,7 @@
 # http://www.electoralcommission.org.uk/__data/assets/excel_doc/0003/105726/GE2010-results-flatfile-website.xls
 
 
-puts "Creating GE2010 Contituency Elections"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating GE2010 Contituency Elections"
 
 W07000049_ge2010 = ConstituencyElection.create!(constituency_id: 'W07000049', election_type: 'General Election', election_sub_type: '', election_date: '2010-05-06', electorate_size: 50838, total_valid_votes_counted: 30958, postal_votes_issued: 9675, valid_postal_votes_counted: 7391)
 W07000058_ge2010 = ConstituencyElection.create!(constituency_id: 'W07000058', election_type: 'General Election', election_sub_type: '', election_date: '2010-05-06', electorate_size: 44593, total_valid_votes_counted: 29966, postal_votes_issued: 6229, valid_postal_votes_counted: 5179)

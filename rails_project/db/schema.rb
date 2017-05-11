@@ -387,63 +387,6 @@ ActiveRecord::Schema.define(version: 20170510180144) do
     t.index ["region_id"], name: "index_constituencies_on_region_id", using: :btree
   end
 
-  create_table "constituency_election_party_ranks", force: :cascade do |t|
-    t.string   "election_rankable_type"
-    t.integer  "election_rankable_id"
-    t.boolean  "prediction"
-    t.string   "description"
-    t.string   "party_1_id"
-    t.integer  "party_1_votes"
-    t.float    "party_1_vote_share_percent"
-    t.integer  "party_1_votes_behind"
-    t.float    "party_1_vote_share_percent_behind"
-    t.string   "party_2_id"
-    t.integer  "party_2_votes"
-    t.float    "party_2_vote_share_percent"
-    t.integer  "party_2_votes_behind"
-    t.float    "party_2_vote_share_percent_behind"
-    t.string   "party_3_id"
-    t.integer  "party_3_votes"
-    t.float    "party_3_vote_share_percent"
-    t.integer  "party_3_votes_behind"
-    t.float    "party_3_vote_share_percent_behind"
-    t.string   "party_4_id"
-    t.integer  "party_4_votes"
-    t.float    "party_4_vote_share_percent"
-    t.integer  "party_4_votes_behind"
-    t.float    "party_4_vote_share_percent_behind"
-    t.string   "party_5_id"
-    t.integer  "party_5_votes"
-    t.float    "party_5_vote_share_percent"
-    t.integer  "party_5_votes_behind"
-    t.float    "party_5_vote_share_percent_behind"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["description"], name: "index_constituency_election_party_ranks_on_description", using: :btree
-    t.index ["election_rankable_type", "election_rankable_id"], name: "idx_const_electn_pty_rnk_on_electn_rnkable", unique: true, using: :btree
-    t.index ["party_1_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_1_vote_percent", using: :btree
-    t.index ["party_1_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_1_vote_percent_behind", using: :btree
-    t.index ["party_1_votes"], name: "idx_const_electn_pty_rnk_on_pty_1_vote", using: :btree
-    t.index ["party_1_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_1_vote_behind", using: :btree
-    t.index ["party_2_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_2_vote_percent", using: :btree
-    t.index ["party_2_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_2_vote_percent_behind", using: :btree
-    t.index ["party_2_votes"], name: "idx_const_electn_pty_rnk_on_pty_2_vote", using: :btree
-    t.index ["party_2_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_2_vote_behind", using: :btree
-    t.index ["party_3_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_3_vote_percent", using: :btree
-    t.index ["party_3_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_3_vote_percent_behind", using: :btree
-    t.index ["party_3_votes"], name: "idx_const_electn_pty_rnk_on_pty_3_vote", using: :btree
-    t.index ["party_3_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_3_vote_behind", using: :btree
-    t.index ["party_4_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_4_vote_percent", using: :btree
-    t.index ["party_4_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_4_vote_percent_behind", using: :btree
-    t.index ["party_4_votes"], name: "idx_const_electn_pty_rnk_on_pty_4_vote", using: :btree
-    t.index ["party_4_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_4_vote_behind", using: :btree
-    t.index ["party_5_vote_share_percent"], name: "idx_const_electn_pty_rnk_on_pty_5_vote_percent", using: :btree
-    t.index ["party_5_vote_share_percent_behind"], name: "idx_const_electn_pty_rnk_on_pty_5_vote_percent_behind", using: :btree
-    t.index ["party_5_votes"], name: "idx_const_electn_pty_rnk_on_pty_5_vote", using: :btree
-    t.index ["party_5_votes_behind"], name: "idx_const_electn_pty_rnk_on_pty_5_vote_behind", using: :btree
-    t.index ["prediction"], name: "index_constituency_election_party_ranks_on_prediction", using: :btree
-  end
-
   create_table "constituency_election_predictions", force: :cascade do |t|
     t.integer  "constituency_election_id"
     t.string   "prediction_description"
@@ -647,187 +590,6 @@ ActiveRecord::Schema.define(version: 20170510180144) do
     t.index ["constituency_id"], name: "index_constituency_eu_votes_on_constituency_id", using: :btree
   end
 
-  create_table "constituency_summaries", force: :cascade do |t|
-    t.string   "constituency_id"
-    t.string   "constituency_name"
-    t.string   "constituency_region"
-    t.string   "constituency_country"
-    t.date     "prev_election_date"
-    t.string   "prev_election_type"
-    t.integer  "prev_election_electorate_size"
-    t.float    "prev_election_turnout_percent"
-    t.float    "prev_election_postal_percent"
-    t.string   "party_1_id"
-    t.integer  "party_1_votes"
-    t.float    "party_1_vote_share_percent"
-    t.integer  "party_1_ahead_behind"
-    t.float    "party_1_ahead_behind_percent"
-    t.string   "party_2_id"
-    t.integer  "party_2_votes"
-    t.float    "party_2_vote_share_percent"
-    t.integer  "party_2_ahead_behind"
-    t.float    "party_2_ahead_behind_percent"
-    t.string   "party_3_id"
-    t.integer  "party_3_votes"
-    t.float    "party_3_vote_share_percent"
-    t.integer  "party_3_ahead_behind"
-    t.float    "party_3_ahead_behind_percent"
-    t.string   "party_4_id"
-    t.integer  "party_4_votes"
-    t.float    "party_4_vote_share_percent"
-    t.integer  "party_4_ahead_behind"
-    t.float    "party_4_ahead_behind_percent"
-    t.string   "party_5_id"
-    t.integer  "party_5_votes"
-    t.float    "party_5_vote_share_percent"
-    t.integer  "party_5_ahead_behind"
-    t.float    "party_5_ahead_behind_percent"
-    t.integer  "CON_position"
-    t.integer  "CON_votes"
-    t.float    "CON_vote_share_percent"
-    t.integer  "CON_ahead_behind"
-    t.float    "CON_ahead_behind_percent"
-    t.integer  "LAB_position"
-    t.integer  "LAB_votes"
-    t.float    "LAB_vote_share_percent"
-    t.integer  "LAB_ahead_behind"
-    t.float    "LAB_ahead_behind_percent"
-    t.integer  "LD_position"
-    t.integer  "LD_votes"
-    t.float    "LD_vote_share_percent"
-    t.integer  "LD_ahead_behind"
-    t.float    "LD_ahead_behind_percent"
-    t.integer  "GRN_position"
-    t.integer  "GRN_votes"
-    t.float    "GRN_vote_share_percent"
-    t.integer  "GRN_ahead_behind"
-    t.float    "GRN_ahead_behind_percent"
-    t.integer  "UKIP_position"
-    t.integer  "UKIP_votes"
-    t.float    "UKIP_vote_share_percent"
-    t.integer  "UKIP_ahead_behind"
-    t.float    "UKIP_ahead_behind_percent"
-    t.integer  "SNP_position"
-    t.integer  "SNP_votes"
-    t.float    "SNP_vote_share_percent"
-    t.integer  "SNP_ahead_behind"
-    t.float    "SNP_ahead_behind_percent"
-    t.integer  "PC_position"
-    t.integer  "PC_votes"
-    t.float    "PC_vote_share_percent"
-    t.integer  "PC_ahead_behind"
-    t.float    "PC_ahead_behind_percent"
-    t.float    "eu_ref_leave_vote_percent"
-    t.date     "pop_estimate_date"
-    t.integer  "pop_total"
-    t.integer  "pop_total_f"
-    t.integer  "pop_total_m"
-    t.integer  "pop_0_17"
-    t.float    "pop_0_17_percent"
-    t.integer  "pop_18_34"
-    t.float    "pop_18_34_percent"
-    t.integer  "pop_35_49"
-    t.float    "pop_35_49_percent"
-    t.integer  "pop_50_64"
-    t.float    "pop_50_64_percent"
-    t.integer  "pop_65_plus"
-    t.float    "pop_65_plus_percent"
-    t.date     "unemployment_date"
-    t.integer  "unemployment_count"
-    t.float    "unemployemnt_percent"
-    t.date     "youth_unemployment_date"
-    t.integer  "youth_unemployment_count"
-    t.float    "youth_unemployemnt_percent"
-    t.date     "oow_benefits_date"
-    t.integer  "oow_benefits_count"
-    t.float    "oow_benefits_percent"
-    t.date     "incapacity_benefits_date"
-    t.integer  "incapacity_benefits_count"
-    t.float    "incapacity_benefits_percent"
-    t.date     "median_wage_date"
-    t.integer  "median_wage"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["CON_ahead_behind"], name: "idx_const_summary_on_CON_ahead_behind", using: :btree
-    t.index ["CON_ahead_behind_percent"], name: "idx_const_summary_on_CON_ahead_behind_pct", using: :btree
-    t.index ["CON_position"], name: "idx_const_summary_on_CON_pos", using: :btree
-    t.index ["CON_vote_share_percent"], name: "idx_const_summary_on_CON_vote_pct", using: :btree
-    t.index ["CON_votes"], name: "idx_const_summary_on_CON_votes", using: :btree
-    t.index ["GRN_ahead_behind"], name: "idx_const_summary_on_GRN_ahead_behind", using: :btree
-    t.index ["GRN_ahead_behind_percent"], name: "idx_const_summary_on_GRN_ahead_behind_pct", using: :btree
-    t.index ["GRN_position"], name: "idx_const_summary_on_GRN_pos", using: :btree
-    t.index ["GRN_vote_share_percent"], name: "idx_const_summary_on_GRN_vote_pct", using: :btree
-    t.index ["GRN_votes"], name: "idx_const_summary_on_GRN_votes", using: :btree
-    t.index ["LAB_ahead_behind"], name: "idx_const_summary_on_LAB_ahead_behind", using: :btree
-    t.index ["LAB_ahead_behind_percent"], name: "idx_const_summary_on_LAB_ahead_behind_pct", using: :btree
-    t.index ["LAB_position"], name: "idx_const_summary_on_LAB_pos", using: :btree
-    t.index ["LAB_vote_share_percent"], name: "idx_const_summary_on_LAB_vote_pct", using: :btree
-    t.index ["LAB_votes"], name: "idx_const_summary_on_LAB_votes", using: :btree
-    t.index ["LD_ahead_behind"], name: "idx_const_summary_on_LD_ahead_behind", using: :btree
-    t.index ["LD_ahead_behind_percent"], name: "idx_const_summary_on_LD_ahead_behind_pct", using: :btree
-    t.index ["LD_position"], name: "idx_const_summary_on_LD_pos", using: :btree
-    t.index ["LD_vote_share_percent"], name: "idx_const_summary_on_LD_vote_pct", using: :btree
-    t.index ["LD_votes"], name: "idx_const_summary_on_LD_votes", using: :btree
-    t.index ["PC_ahead_behind"], name: "idx_const_summary_on_PC_ahead_behind", using: :btree
-    t.index ["PC_ahead_behind_percent"], name: "idx_const_summary_on_PC_ahead_behind_pct", using: :btree
-    t.index ["PC_position"], name: "idx_const_summary_on_PC_pos", using: :btree
-    t.index ["PC_vote_share_percent"], name: "idx_const_summary_on_PC_vote_pct", using: :btree
-    t.index ["PC_votes"], name: "idx_const_summary_on_PC_votes", using: :btree
-    t.index ["SNP_ahead_behind"], name: "idx_const_summary_on_SNP_ahead_behind", using: :btree
-    t.index ["SNP_ahead_behind_percent"], name: "idx_const_summary_on_SNP_ahead_behind_pct", using: :btree
-    t.index ["SNP_position"], name: "idx_const_summary_on_SNP_pos", using: :btree
-    t.index ["SNP_vote_share_percent"], name: "idx_const_summary_on_SNP_vote_pct", using: :btree
-    t.index ["SNP_votes"], name: "idx_const_summary_on_SNP_votes", using: :btree
-    t.index ["UKIP_ahead_behind"], name: "idx_const_summary_on_UKIP_ahead_behind", using: :btree
-    t.index ["UKIP_ahead_behind_percent"], name: "idx_const_summary_on_UKIP_ahead_behind_pct", using: :btree
-    t.index ["UKIP_position"], name: "idx_const_summary_on_UKIP_pos", using: :btree
-    t.index ["UKIP_vote_share_percent"], name: "idx_const_summary_on_UKIP_vote_pct", using: :btree
-    t.index ["UKIP_votes"], name: "idx_const_summary_on_UKIP_votes", using: :btree
-    t.index ["constituency_id"], name: "idx_const_summary_on_constituency", using: :btree
-    t.index ["incapacity_benefits_count"], name: "idx_const_summary_on_incapacity_benefit_cnt", using: :btree
-    t.index ["incapacity_benefits_percent"], name: "idx_const_summary_on_incapacity_benefit_pct", using: :btree
-    t.index ["median_wage"], name: "idx_const_summary_on_median_wage", using: :btree
-    t.index ["oow_benefits_count"], name: "idx_const_summary_on_oow_benefit_cnt", using: :btree
-    t.index ["oow_benefits_percent"], name: "idx_const_summary_on_oow_benefit_pct", using: :btree
-    t.index ["party_1_ahead_behind"], name: "idx_const_summary_on_pty_1_ahead_behind", using: :btree
-    t.index ["party_1_ahead_behind_percent"], name: "idx_const_summary_on_pty_1_ahead_behind_percent", using: :btree
-    t.index ["party_1_vote_share_percent"], name: "idx_const_summary_on_pty_1_vote_pct", using: :btree
-    t.index ["party_1_votes"], name: "idx_const_summary_on_pty_1_vote", using: :btree
-    t.index ["party_2_ahead_behind"], name: "idx_const_summary_on_pty_2_ahead_behind", using: :btree
-    t.index ["party_2_ahead_behind_percent"], name: "idx_const_summary_on_pty_2_ahead_behind_percent", using: :btree
-    t.index ["party_2_vote_share_percent"], name: "idx_const_summary_on_pty_2_vote_pct", using: :btree
-    t.index ["party_2_votes"], name: "idx_const_summary_on_pty_2_vote", using: :btree
-    t.index ["party_3_ahead_behind"], name: "idx_const_summary_on_pty_3_ahead_behind", using: :btree
-    t.index ["party_3_ahead_behind_percent"], name: "idx_const_summary_on_pty_3_ahead_behind_percent", using: :btree
-    t.index ["party_3_vote_share_percent"], name: "idx_const_summary_on_pty_3_vote_pct", using: :btree
-    t.index ["party_3_votes"], name: "idx_const_summary_on_pty_3_vote", using: :btree
-    t.index ["party_4_ahead_behind"], name: "idx_const_summary_on_pty_4_ahead_behind", using: :btree
-    t.index ["party_4_ahead_behind_percent"], name: "idx_const_summary_on_pty_4_ahead_behind_percent", using: :btree
-    t.index ["party_4_vote_share_percent"], name: "idx_const_summary_on_pty_4_vote_pct", using: :btree
-    t.index ["party_4_votes"], name: "idx_const_summary_on_pty_4_vote", using: :btree
-    t.index ["party_5_ahead_behind"], name: "idx_const_summary_on_pty_5_ahead_behind", using: :btree
-    t.index ["party_5_ahead_behind_percent"], name: "idx_const_summary_on_pty_5_ahead_behind_percent", using: :btree
-    t.index ["party_5_vote_share_percent"], name: "idx_const_summary_on_pty_5_vote_pct", using: :btree
-    t.index ["party_5_votes"], name: "idx_const_summary_on_pty_5_vote", using: :btree
-    t.index ["pop_0_17"], name: "idx_const_summary_on_pop_0_17", using: :btree
-    t.index ["pop_0_17_percent"], name: "idx_const_summary_on_pop_0_17_percent", using: :btree
-    t.index ["pop_18_34"], name: "idx_const_summary_on_pop_18_34", using: :btree
-    t.index ["pop_18_34_percent"], name: "idx_const_summary_on_pop_18_34_percent", using: :btree
-    t.index ["pop_35_49"], name: "idx_const_summary_on_pop_35_49", using: :btree
-    t.index ["pop_35_49_percent"], name: "idx_const_summary_on_pop_35_49_percent", using: :btree
-    t.index ["pop_50_64"], name: "idx_const_summary_on_pop_50_64", using: :btree
-    t.index ["pop_50_64_percent"], name: "idx_const_summary_on_pop_50_64_percent", using: :btree
-    t.index ["pop_65_plus"], name: "idx_const_summary_on_pop_65_plus", using: :btree
-    t.index ["pop_65_plus_percent"], name: "idx_const_summary_on_pop_65_plus_percent", using: :btree
-    t.index ["pop_total"], name: "idx_const_summary_on_pop_total", using: :btree
-    t.index ["pop_total_f"], name: "idx_const_summary_on_pop_total_f", using: :btree
-    t.index ["pop_total_m"], name: "idx_const_summary_on_pop_total_m", using: :btree
-    t.index ["unemployemnt_percent"], name: "idx_const_summary_on_umemployment_pct", using: :btree
-    t.index ["unemployment_count"], name: "idx_const_summary_on_umemployment_cnt", using: :btree
-    t.index ["youth_unemployemnt_percent"], name: "idx_const_summary_on_youth_umemployment_pct", using: :btree
-    t.index ["youth_unemployment_count"], name: "idx_const_summary_on_youth_umemployment_cnt", using: :btree
-  end
-
   create_table "constituency_wards", id: false, force: :cascade do |t|
     t.string   "constituency_id"
     t.string   "ward_id"
@@ -901,11 +663,6 @@ ActiveRecord::Schema.define(version: 20170510180144) do
   end
 
   add_foreign_key "constituencies", "regions"
-  add_foreign_key "constituency_election_party_ranks", "parties", column: "party_1_id"
-  add_foreign_key "constituency_election_party_ranks", "parties", column: "party_2_id"
-  add_foreign_key "constituency_election_party_ranks", "parties", column: "party_3_id"
-  add_foreign_key "constituency_election_party_ranks", "parties", column: "party_4_id"
-  add_foreign_key "constituency_election_party_ranks", "parties", column: "party_5_id"
   add_foreign_key "constituency_election_predictions", "constituency_elections"
   add_foreign_key "constituency_election_results", "constituency_elections"
   add_foreign_key "constituency_election_summaries", "parties", column: "con_id"
@@ -923,12 +680,6 @@ ActiveRecord::Schema.define(version: 20170510180144) do
   add_foreign_key "constituency_election_votes", "parties"
   add_foreign_key "constituency_elections", "constituencies"
   add_foreign_key "constituency_eu_votes", "constituencies"
-  add_foreign_key "constituency_summaries", "constituencies"
-  add_foreign_key "constituency_summaries", "parties", column: "party_1_id"
-  add_foreign_key "constituency_summaries", "parties", column: "party_2_id"
-  add_foreign_key "constituency_summaries", "parties", column: "party_3_id"
-  add_foreign_key "constituency_summaries", "parties", column: "party_4_id"
-  add_foreign_key "constituency_summaries", "parties", column: "party_5_id"
   add_foreign_key "constituency_wards", "constituencies"
   add_foreign_key "constituency_wards", "wards"
   add_foreign_key "countries", "states"

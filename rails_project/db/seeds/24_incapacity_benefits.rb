@@ -1,7 +1,7 @@
 # Original data from:
 # https://public.tableau.com/profile/house.of.commons.library.statistics#!/vizhome/Incapacitybenefits_0/Data
 
-puts "Creating Constituency Incapacity Benefits"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituency Incapacity Benefits"
 
 AreaIncapacityBenefit.create!(area: Constituency.find('E14000530'), statistic_date: '2010-05-01', incapacity_benefits_count: 2740, incapacity_benefits_percent: 3.9)
 AreaIncapacityBenefit.create!(area: Constituency.find('E14000531'), statistic_date: '2010-05-01', incapacity_benefits_count: 2580, incapacity_benefits_percent: 5.5)

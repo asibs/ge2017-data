@@ -1,5 +1,6 @@
+# ONS Ward data
 
-puts "Creating Wards"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Wards"
 
 Ward.create!(id: 'E05000026', name: "Abbey", local_authority_id: 'E09000002')
 Ward.create!(id: 'E05000027', name: "Alibon", local_authority_id: 'E09000002')

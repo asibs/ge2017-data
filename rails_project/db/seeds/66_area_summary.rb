@@ -1,5 +1,5 @@
 
-puts "Creating Area Summaries"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Area Summaries"
 
 def diff(area_number, parent_number)
   return nil if area_number.nil? || parent_number.nil?
@@ -18,7 +18,6 @@ i = 0
 loop do
   area = areas.pop
   break if area.nil?
-  p "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - #{i}/#{areas.size} - #{area}" if i % 100 == 0
   i += 1
 
   args_hash = {}

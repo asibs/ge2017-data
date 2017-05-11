@@ -2,7 +2,7 @@
 
 # Only have constituency / ward estimates for England & Wales so far...
 
-puts "Creating Country Population Estimates"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Country Population Estimates"
 
 totals = { "England" => Hash.new(0), "Wales" => Hash.new(0) }
 

@@ -2,7 +2,7 @@
 # http://geoportal.statistics.gov.uk/datasets?q=Ward+to+Westminster+Parliamentary+Constituency&sort_by=relevance
 
 
-puts "Creating Constituency Wards"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituency Wards"
 
 ConstituencyWard.create!(constituency_id: 'E14000540', ward_id: 'E05000026')
 ConstituencyWard.create!(constituency_id: 'E14000540', ward_id: 'E05000027')

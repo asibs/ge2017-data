@@ -1,5 +1,8 @@
+# Original data from:
+# http://www.bbc.co.uk/news/uk-politics-38762034
 
-puts "Creating Ward EU Votes"
+
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Ward EU Votes"
 
 AreaEuVote.create!(area: Ward.find('E05000106'), actual_leave_votes: 3812, actual_remain_votes: 4801, actual_leave_vote_percent: 44.26, contains_postal_votes: true)
 AreaEuVote.create!(area: Ward.find('E05000107'), actual_leave_votes: 4140, actual_remain_votes: 2259, actual_leave_vote_percent: 64.7, contains_postal_votes: true)

@@ -1,7 +1,7 @@
 # Original data from:
 # https://public.tableau.com/profile/house.of.commons.library.statistics#!/vizhome/Youthunemployment/Data
 
-puts "Creating Constituency Youth Unemployment"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituency Youth Unemployment"
 
 AreaYouthUnemployment.create!(area: Constituency.find('E14000530'), statistic_date: '2010-06-01', youth_unemployed_count: 425, youth_unemployed_percent: 4.2759765575874)
 AreaYouthUnemployment.create!(area: Constituency.find('E14000531'), statistic_date: '2010-06-01', youth_unemployed_count: 480, youth_unemployed_percent: 8.4719586992013)

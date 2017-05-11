@@ -1,4 +1,4 @@
-puts "Creating States / Countries"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating States / Countries"
 
 # UK is a 'soveriegn state' made up of 4 constituent 'countries'
 uk = State.create!(id: 'UK')

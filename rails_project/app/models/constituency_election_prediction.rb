@@ -6,6 +6,6 @@ class ConstituencyElectionPrediction < ApplicationRecord
   alias_method :predicted_votes, :constituency_election_votes
   alias_method :votes, :constituency_election_votes
 
-  has_one :constituency_election_party_rank, as: :election_rankable
-  alias_method :party_rank, :constituency_election_party_rank
+  has_one :constituency_election_summary, as: :election_rankable
+  alias_method :summary, :constituency_election_summary
 end

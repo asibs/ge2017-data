@@ -1,5 +1,5 @@
 
-puts "Creating Constituency EU Votes"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituency EU Votes"
 
 AreaEuVote.create!(area: Constituency.find('E14000530'), estimated_leave_vote_percent: 58.097447877407, actual_leave_vote_percent: 57.8977657413676)
 AreaEuVote.create!(area: Constituency.find('E14000531'), estimated_leave_vote_percent: 68.7227547821332, actual_leave_vote_percent: 67.796349579389)

@@ -3,7 +3,7 @@
 # Note, in order to keep data size down, have reduced this to store data only every 3 months (March, June, September, December)
 # This should still be enough to show historic trends, and reduces the data to store by two thirds
 
-puts "Creating Region Unemployment Rates"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Region Unemployment Rates"
 
 AreaUnemployment.create!(area: Region.find_by(name: 'North East'), statistic_date: '2010-06-01', unemployed_count: 78253, unemployed_percent: 6.3954291)
 AreaUnemployment.create!(area: Region.find_by(name: 'North West'), statistic_date: '2010-06-01', unemployed_count: 177275, unemployed_percent: 5.2513012)

@@ -3,7 +3,7 @@
 
 require 'csv'
 
-puts "Creating Ward Population Estimates"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Ward Population Estimates"
 
 arr_of_arrs = CSV.read(File.join(Rails.root, 'db', 'seeds', 'csv_data', '14_ward_population_estimates.csv'))
 

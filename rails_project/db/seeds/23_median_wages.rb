@@ -1,7 +1,7 @@
 # Original data from:
 # https://public.tableau.com/profile/house.of.commons.library.statistics#!/vizhome/WagesFinal_0/Data
 
-puts "Creating Constituency Median Wages"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituency Median Wages"
 
 AreaMedianWage.create!(area: Constituency.find('E14000554'), statistic_date: '2016-04-01', median_wage: 480)
 AreaMedianWage.create!(area: Constituency.find('E14000569'), statistic_date: '2016-04-01', median_wage: 460)

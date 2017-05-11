@@ -1,5 +1,5 @@
 
-puts "Creating Parties"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Parties"
 
 Party.create!(id: 'T35C', name: "30-50 Coalition")
 Party.create!(id: 'AB', name: "Above and Beyond")

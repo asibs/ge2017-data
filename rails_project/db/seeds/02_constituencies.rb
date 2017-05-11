@@ -1,5 +1,6 @@
+# ONS Constituency data
 
-puts "Creating Constituencies"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Constituencies"
 
 Constituency.create!(id: 'E14000530', pano: 7, name: 'Aldershot', constituency_type: 'Borough', county: 'Hampshire', region_id: 'E12000008')
 Constituency.create!(id: 'E14000531', pano: 8, name: 'Aldridge-Brownhills', constituency_type: 'Borough', county: 'West Midlands', region_id: 'E12000005')

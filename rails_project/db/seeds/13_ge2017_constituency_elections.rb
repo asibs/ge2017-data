@@ -1,5 +1,5 @@
 
-puts "Creating GE2015 Contituency Election"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating GE2017 Contituency Election"
 
 Constituency.all.each do |constituency|
   ConstituencyElection.create!(

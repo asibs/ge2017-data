@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th></th>
-      <th colspan="8">Previous Election</th>
+      <th colspan="7">Previous Election</th>
       <th></th>
       <th colspan="6">Population Estimates</th>
     </tr>
@@ -12,12 +12,11 @@
       <th>Name</th>
       <th>Winner</th>
       <th>Vote Share (%)</th>
-      <th>Majority (%)</th>
       <th>Majority</th>
       <th>2nd Place</th>
-      <th>2nd Place Votes</th>
+      <th>2nd Place Vote Share (%)</th>
       <th>3rd Place</th>
-      <th>3rd Place Votes</th>
+      <th>3rd Place Vote Share (%)</th>
       <th>Brexit Leave Vote (%)</th>
       <th>Gender Ratio (% Female)</th>
       <th>Under 18s (%)</th>
@@ -30,25 +29,25 @@
 
   <tbody>
     <% @constituencies.each do |c| %>
-      <% summary = c.constituency_summary %>
+      <% election_summary = c.most_recent_election_result.summary %>
+      <% area_summary = c.area_summary %>
 
       <tr>
         <td><%= link_to c.name, c %></td>
-        <td class="<%= summary.party_1_id %>"><%= summary.party_1_id %></td>
-        <td class="<%= summary.party_1_id %>"><%= summary.party_1_vote_share_percent.round(2) %></td>
-        <td class="<%= summary.party_1_id %>"><%= summary.party_1_ahead_behind.round(2) %></td>
-        <td class="<%= summary.party_1_id %>"><%= summary.party_1_ahead_behind_percent %></td>
-        <td><%= summary.party_2_id %></td>
-        <td><%= summary.party_2_votes %></td>
-        <td><%= summary.party_3_id %></td>
-        <td><%= summary.party_3_votes %></td>
-        <td><%= summary.eu_ref_leave_vote_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= ( summary.pop_total_f && summary.pop_total ? (summary.pop_total_f.to_f / summary.pop_total).round(2) : "Unknown") %></td>
-        <td><%= summary.pop_0_17_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= summary.pop_18_34_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= summary.pop_35_49_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= summary.pop_50_64_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= summary.pop_65_plus_percent.try(:round, 2) || "Unknown" %></td>
+        <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_id %></td>
+        <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_vote_share_percent.round(2) %></td>
+        <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_ahead_behind %></td>
+        <td><%= election_summary.party_2_id %></td>
+        <td><%= election_summary.party_2_vote_share_percent.round(2) %></td>
+        <td><%= election_summary.party_3_id %></td>
+        <td><%= election_summary.party_3_vote_share_percent.round(2) %></td>
+        <td><%= area_summary.eu_ref_leave_vote_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_total_f_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_0_17_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_18_34_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_35_49_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_50_64_percent.try(:round, 2) || "Unknown" %></td>
+        <td><%= area_summary.pop_65_plus_percent.try(:round, 2) || "Unknown" %></td>
       </tr>
     <% end %>
   </tbody>

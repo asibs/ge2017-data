@@ -3,7 +3,7 @@
 # http://www.electoralcommission.org.uk/__data/assets/excel_doc/0011/189623/2015-UK-general-election-data-results-WEB.xlsx
 
 
-puts "Creating GE2015 Contituency Election"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating GE2015 Contituency Election"
 
 E14000530_ge2015 = ConstituencyElection.create!(constituency_id: 'E14000530', election_type: 'General Election', election_sub_type: '', election_date: '2015-05-07', electorate_size: 72430, total_valid_votes_counted: 46191, postal_votes_issued: 11360, valid_postal_votes_counted: 9404)
 E14000531_ge2015 = ConstituencyElection.create!(constituency_id: 'E14000531', election_type: 'General Election', election_sub_type: '', election_date: '2015-05-07', electorate_size: 60215, total_valid_votes_counted: 39497, postal_votes_issued: 8186, valid_postal_votes_counted: 6576)

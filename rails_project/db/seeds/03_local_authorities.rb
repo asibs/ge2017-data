@@ -1,5 +1,6 @@
+# ONS Local Authority data
 
-puts "Creating Local Authorities"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Local Authorities"
 
 LocalAuthority.create(id: 'E06000001', name: "Hartlepool", region_id: 'E12000001')
 LocalAuthority.create(id: 'E06000002', name: "Middlesbrough", region_id: 'E12000001')

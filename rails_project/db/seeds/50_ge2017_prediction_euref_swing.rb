@@ -14,7 +14,7 @@ require 'linefit'
 # Conservatives, Labour, Lib Dems, UKIP, Greens
 
 
-puts "Calculating 2017 Predictions using Post-2015 byelections Brexit swing data"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Calculating 2017 Predictions using Post-2015 byelections Brexit swing data"
 
 parties = ['LAB', 'UKIP', 'CON', 'LD', 'GRN']
 party_coords = Hash[ parties.map { |party| [party, {x:[], y:[]}] } ]

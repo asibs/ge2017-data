@@ -1,5 +1,6 @@
+# ONS Region data
 
-puts "Creating Regions"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Regions"
 
 Region.create!(id: 'E12000001', name: 'North East', country_id: 'England')
 Region.create!(id: 'E12000002', name: 'North West', country_id: 'England')

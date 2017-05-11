@@ -1,5 +1,5 @@
 
-puts "Creating Contituency Election Summaries"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Contituency Election Summaries"
 
 def create_election_result_summary(election)
 
@@ -22,8 +22,8 @@ def create_election_result_summary(election)
         params_hash["party_#{pos}_votes"] = votes[i].votes
         params_hash["party_#{pos}_vote_share_percent"] = votes[i].vote_share_percent
         if i == 0 then
-          params_hash["party_#{pos}_ahead_behind"] = votes[0].votes - votes[i].votes
-          params_hash["party_#{pos}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[i].vote_share_percent
+          params_hash["party_#{pos}_ahead_behind"] = votes[0].votes - votes[1].votes
+          params_hash["party_#{pos}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[1].vote_share_percent
         else
           params_hash["party_#{pos}_ahead_behind"] = votes[i].votes - votes[0].votes
           params_hash["party_#{pos}_ahead_behind_percent"] = votes[i].vote_share_percent - votes[0].vote_share_percent
@@ -38,8 +38,8 @@ def create_election_result_summary(election)
         params_hash["#{party_id}_votes"] = votes[i].votes
         params_hash["#{party_id}_vote_share_percent"] = votes[i].vote_share_percent
         if i == 0 then
-          params_hash["#{party_id}_ahead_behind"] = votes[0].votes - votes[i].votes
-          params_hash["#{party_id}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[i].vote_share_percent
+          params_hash["#{party_id}_ahead_behind"] = votes[0].votes - votes[1].votes
+          params_hash["#{party_id}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[1].vote_share_percent
         else
           params_hash["#{party_id}_ahead_behind"] = votes[i].votes - votes[0].votes
           params_hash["#{party_id}_ahead_behind_percent"] = votes[i].vote_share_percent - votes[0].vote_share_percent
@@ -47,7 +47,6 @@ def create_election_result_summary(election)
       end
     end
 
-    p params_hash
     ConstituencyElectionSummary.create!(params_hash)
   end
 end
@@ -64,18 +63,18 @@ def create_election_prediction_summary(prediction)
   params_hash[:turnout_percent] = nil
   params_hash[:postal_percent] = nil
 
-  votes = prediction.predicted_votes.to_a.sort { |a,b| b.votes <=> a.votes }
+  votes = prediction.predicted_votes.to_a.sort { |a,b| b.vote_share_percent <=> a.vote_share_percent }
   if !votes.empty? then
 
     (0..votes.size-1).each do |i|
       pos = i+1
-      if [1..5].include?(pos) then
+      if (1..5).include?(pos) then
         params_hash["party_#{pos}_id"] = votes[i].party.id
         params_hash["party_#{pos}_votes"] = nil
         params_hash["party_#{pos}_vote_share_percent"] = votes[i].vote_share_percent
         if i == 0 then
           params_hash["party_#{pos}_ahead_behind"] = nil
-          params_hash["party_#{pos}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[i].vote_share_percent
+          params_hash["party_#{pos}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[1].vote_share_percent
         else
           params_hash["party_#{pos}_ahead_behind"] = nil
           params_hash["party_#{pos}_ahead_behind_percent"] = votes[i].vote_share_percent - votes[0].vote_share_percent
@@ -91,7 +90,7 @@ def create_election_prediction_summary(prediction)
         params_hash["#{party_id}_vote_share_percent"] = votes[i].vote_share_percent
         if i == 0 then
           params_hash["#{party_id}_ahead_behind"] = nil
-          params_hash["#{party_id}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[i].vote_share_percent
+          params_hash["#{party_id}_ahead_behind_percent"] = votes[0].vote_share_percent - votes[1].vote_share_percent
         else
           params_hash["#{party_id}_ahead_behind"] = nil
           params_hash["#{party_id}_ahead_behind_percent"] = votes[i].vote_share_percent - votes[0].vote_share_percent

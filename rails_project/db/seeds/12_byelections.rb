@@ -4,7 +4,7 @@
 # (get IDs from 1st link and paste the get those IDs from the second URL)
 
 
-puts "Creating Byelection Contituency Elections"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Byelection Contituency Elections"
 
 E14000871_byelection = ConstituencyElection.create!(constituency_id: 'E14000871', election_type: 'By Election', election_sub_type: '', election_date: '2015-11-05', electorate_size: 68682, total_valid_votes_counted: 27679, postal_votes_issued: nil, valid_postal_votes_counted: nil)
 W07000074_byelection = ConstituencyElection.create!(constituency_id: 'W07000074', election_type: 'By Election', election_sub_type: '', election_date: '2016-05-05', electorate_size: 55027, total_valid_votes_counted: 23532, postal_votes_issued: nil, valid_postal_votes_counted: nil)
@@ -18,7 +18,7 @@ E14000647_byelection = ConstituencyElection.create!(constituency_id: 'E14000647'
 E14000972_byelection = ConstituencyElection.create!(constituency_id: 'E14000972', election_type: 'By Election', election_sub_type: '', election_date: '2017-02-23', electorate_size: 55572, total_valid_votes_counted: 21170, postal_votes_issued: nil, valid_postal_votes_counted: nil)
 
 
-puts "Creating Byelection Contituency Election Results"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Byelection Contituency Election Results"
 
 E14000871_byelection_result = ConstituencyElectionResult.create!(constituency_election_id: E14000871_byelection.id, description: 'data.parliament.uk results data')
 W07000074_byelection_result = ConstituencyElectionResult.create!(constituency_election_id: W07000074_byelection.id, description: 'data.parliament.uk results data')
@@ -32,7 +32,7 @@ E14000647_byelection_result = ConstituencyElectionResult.create!(constituency_el
 E14000972_byelection_result = ConstituencyElectionResult.create!(constituency_election_id: E14000972_byelection.id, description: 'data.parliament.uk results data')
 
 
-puts "Creating Byelection Contituency Election Candidate Votes"
+puts "#{Time.now.strftime("%d/%m/%Y %H:%M:%S")} - Creating Byelection Contituency Election Candidate Votes"
 
 ConstituencyElectionVote.create(election_voteable: E14000871_byelection_result, party_id: 'LAB', candidate_name: "Jim McMahon", candidate_incumbent: false, votes: 17209, vote_share_percent: 62.1734889266231, percent_change_from_last_ge: 7.39452886913182)
 ConstituencyElectionVote.create(election_voteable: E14000871_byelection_result, party_id: 'UKIP', candidate_name: "John Bickley", candidate_incumbent: false, votes: 6487, vote_share_percent: 23.4365403374399, percent_change_from_last_ge: 2.82314580374496)
