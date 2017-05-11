@@ -2,6 +2,7 @@ class CreateLocalAuthorities < ActiveRecord::Migration[5.0]
   def change
     create_table :local_authorities, id: :string do |t|
       t.string :name, index: true
+      t.references :region, type: :string, foreign_key: true
       t.boolean :abolished, default: false
       t.date :abolished_date, default: nil
 

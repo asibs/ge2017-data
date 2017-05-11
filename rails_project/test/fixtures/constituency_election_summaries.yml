@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  election_rankable: one
+  election_rankable_type: Election rankable
+
+two:
+  election_rankable: two
+  election_rankable_type: Election rankable

@@ -14,4 +14,6 @@ class Area < ApplicationRecord
   has_many :incapacity_benefit_rates, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaIncapacityBenefit"
 
   has_many :median_wages, -> { order(statistic_date: :desc) }, as: :area, class_name: "AreaMedianWage"
+
+  has_one :area_summary, as: :area, class_name: "AreaSummary"
 end

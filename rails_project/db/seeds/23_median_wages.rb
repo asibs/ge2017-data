@@ -644,7 +644,7 @@ AreaMedianWage.create!(area: Region.find_by(name: 'North West'), statistic_date:
 AreaMedianWage.create!(area: Region.find_by(name: 'Yorkshire and The Humber'), statistic_date: '2016-04-01', median_wage: 500)
 AreaMedianWage.create!(area: Region.find_by(name: 'East Midlands'), statistic_date: '2016-04-01', median_wage: 500)
 AreaMedianWage.create!(area: Region.find_by(name: 'West Midlands'), statistic_date: '2016-04-01', median_wage: 510)
-AreaMedianWage.create!(area: Region.find_by(name: 'East of England'), statistic_date: '2016-04-01', median_wage: 570)
+AreaMedianWage.create!(area: Region.find_by(name: 'East'), statistic_date: '2016-04-01', median_wage: 570)
 AreaMedianWage.create!(area: Region.find_by(name: 'London'), statistic_date: '2016-04-01', median_wage: 630)
 AreaMedianWage.create!(area: Region.find_by(name: 'South East'), statistic_date: '2016-04-01', median_wage: 580)
 AreaMedianWage.create!(area: Region.find_by(name: 'South West'), statistic_date: '2016-04-01', median_wage: 510)
