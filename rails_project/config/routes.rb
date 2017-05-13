@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  root 'constituencies#index'
+  root 'static_pages#reports'
+
+  controller :static_pages do
+    get :reports
+    get :about
+  end
 
   resources 'constituencies', only: [:index, :show]
 

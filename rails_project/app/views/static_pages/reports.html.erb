@@ -1,0 +1,16 @@
+<h1>Reports</h1>
+
+<ul>
+
+  <li>
+    <strong><%= link_to "All Constituencies", constituencies_path %></strong> -
+    Browse all constituencies
+  </li>
+
+  <li>
+    <strong><%= link_to "Marginal Youth Vote", constituencies_path(p18_34:2, marginal:5) %></strong> -
+    Show constituencies where the 18-35 population is more than 2% above average,
+    and where a progressive party is within 5% of a Conservative MP (or vice versa)
+  </li>
+
+</ul>
