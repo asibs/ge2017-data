@@ -29,5 +29,31 @@ module ElectionDataUtils
       end
     end
   end
-  
+
+
+  def self.classify_statistic(stat, compare_stat, classifications)
+    return nil if stat.nil? || compare_stat.nil?
+
+    classifications.each do |classification, bounds|
+      if bounds[:max].nil? then
+        return classification if stat > compare_stat + bounds[:min]
+      elsif bounds[:min].nil?
+        return classification if stat < compare_stat + bounds[:max]
+      else
+        return classification if stat.between?(compare_stat + bounds[:min], compare_stat + bounds[:max])
+      end
+    end
+  end
+
+  def self.classify_statistic_to_s(stat_description, stat_method, area_summary, compare_to_area_summary, classifications)
+    stat = area_summary.public_send(stat_method)
+    compare_stat = compare_to_area_summary.public_send(stat_method)
+    classification = classify_statistic(stat, compare_stat, classifications)
+    compare_area_name = compare_to_area_summary.area.name
+
+    return nil if classification.nil?
+
+    "#{stat_description} is #{classification} for #{compare_area_name}, at #{stat} (Average for #{compare_area_name} is #{compare_stat})"
+  end
+
 end

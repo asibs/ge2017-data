@@ -29,6 +29,7 @@
 
   <tbody>
     <% @constituencies.each do |c| %>
+      <% p c %>
       <% election_summary = c.most_recent_election_result.summary %>
       <% area_summary = c.area_summary %>
 

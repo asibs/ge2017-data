@@ -1,6 +1,6 @@
 <h1><%= @constituency.name %></h1>
 
-<%= render partial: "shared/constituency_executive_summary", object: @constituency %>
+<%= render partial: "shared/constituency_area_summary", object: @constituency.area_summary %>
 
 <%= render partial: "shared/constituency_population_summary", object: @constituency %>
 

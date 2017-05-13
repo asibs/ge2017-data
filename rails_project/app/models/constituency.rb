@@ -3,6 +3,8 @@ class Constituency < Area
 
   has_one :country, through: :region
 
+  has_one :state, through: :country
+
   has_many :constituency_wards
   has_many :wards, through: :constituency_wards
 
