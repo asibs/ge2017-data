@@ -4,12 +4,12 @@
 
   <% votes = constituency_election_result.votes %>
   <% unless votes.empty? %>
-    <h3>Results</h3>
 
     <table class="table table-bordered party">
       <tr>
         <th>Party</th>
         <th>Candidate Name</th>
+        <th>Votes</th>
         <th>Vote Share (%)</th>
         <th>Swing</th>
       </tr>
@@ -18,7 +18,8 @@
         <tr class="<%= vote.party.id %>">
           <td><%= vote.party.name %></td>
           <td><%= vote.candidate_name %></td>
-          <td><%= vote.vote_share_percent %></td>
+          <td><%= vote.votes %></td>
+          <td><%= vote.vote_share_percent.round(2) %></td>
           <td><%= ElectionDataUtils.percent_change_to_s(vote.percent_change_from_last_ge) %></td>
         </tr>
       <% end %>

@@ -1,0 +1,28 @@
+<% puts "RENDERING PARTIAL CONSTITUENCY_POPULATION_SUMMARY" %>
+
+<table class="table table-bordered table-striped table-hover">
+  <tr>
+    <th>Area</th>
+    <% PopulationEstimate::STANDARD_AGE_RANGES.each do |age_range| %>
+      <th><%= age_range[:name] %></th>
+    <% end %>
+  </tr>
+
+  <% areas.each do |area| %>
+    <% area_pop_est = area.population_estimates.first %>
+    <% if area_pop_est %>
+      <tr>
+        <td>
+          <em><%= area.area_type %></em>: <strong><%= area.name %></strong>
+          <% if area.area_type == "Ward" then %>
+            (<%= link_to "Map", "https://mapit.mysociety.org/area/#{area.id}.html", target: :_blank %>)
+          <% end %>
+        </td>
+
+        <% PopulationEstimate::STANDARD_AGE_RANGES.each do |age_range| %>
+          <td><%= area_pop_est.try(:population_string, age_range) || "Unknown" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

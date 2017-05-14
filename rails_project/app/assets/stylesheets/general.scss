@@ -1,3 +1,7 @@
+div#content-container {
+  min-height: 85vh;
+}
+
 table.party {
 
   th { background-color: #FDFDFD }
@@ -25,4 +29,18 @@ table.party {
 
   .PC { background-color: #BBEEBB }
 
+}
+
+.eu_vote {
+  .very_high   { background-color: #CCAAFF }
+  .high        { background-color: #DDCCFF }
+  .little_high { background-color: #EEFFFF }
+  .average     { background-color: #FFFFFF }
+  .little_low  { background-color: #FFFFEE }
+  .low         { background-color: #FFFFDD }
+  .very_low    { background-color: #FFFFCC }
+}
+
+.inline {
+  display: inline;
 }

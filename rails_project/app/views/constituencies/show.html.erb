@@ -1,16 +1,36 @@
-<h1><%= @constituency.name %></h1>
+<span>
+  <h1 class="inline"><%= @constituency.name %> </h1>
+  <p class="inline"> (<%= link_to "Map", "https://mapit.mysociety.org/area/#{@constituency.id}.html", target: :_blank %>)</p>
+</span>
 
-<%= render partial: "shared/constituency_area_summary", object: @constituency.area_summary %>
-
-<%= render partial: "shared/constituency_population_summary", object: @constituency %>
-
-<% @constituency.elections.sort { |a,b| b.election_date <=> a.election_date }.each do |election| %>
-  <%= render partial: "shared/constituency_election", object: election %>
+<% if !@constituency.elections_with_results.empty? %>
+  <div class="row">
+  <% @constituency.elections_with_results.sort { |a,b| b.election_date <=> a.election_date }.each do |election| %>
+    <div class="col-md-12 col-lg-6">
+      <h3><%= election.description %></h3>
+      <p>
+        Turnout: <%= election.turnout_percent.try(:round, 2) %>% <br />
+        Percentage of electorate who voted by post: <%= election.postal_percent.try(:round, 2) %>%
+      </p>
+      <%= render partial: "shared/constituency_election_result", object: election.result %>
+    </div>
+  <% end %>
+  </div>
 <% end %>
 
+<h3>Demographic Summary</h3>
+<%= render partial: "shared/constituency_area_summary", object: @constituency.area_summary %>
+
+<h3>Population of Wards</h3>
+<% areas = [@constituency] %>
+<% @constituency.wards.each { |ward| areas << ward } %>
+<%= render partial: "shared/areas_population_summary", locals: { areas: areas } %>
+
+<h3>More Data</h3>
+<h4>Population Graph</h4>
 <% @constituency.population_estimates.each do |pop_est| %>
-  <h3><%= pop_est.estimate_description %></h3>
+  <p><%= pop_est.estimate_description %></p>
   <%= column_chart pop_est.population_hash, stacked: true %>
-  <%= column_chart pop_est.population_hash([[0,17], [18,34], [35,49], [50,64], [65,90]]), stacked: true %>
-  <%= pie_chart pop_est.gender_hash, library: {pieSliceText:'value-and-percentage'} %>
+  <%# column_chart pop_est.population_hash([[0,17], [18,34], [35,49], [50,64], [65,90]]), stacked: true %>
+  <%# pie_chart pop_est.gender_hash, library: {pieSliceText:'value-and-percentage'} %>
 <% end %>

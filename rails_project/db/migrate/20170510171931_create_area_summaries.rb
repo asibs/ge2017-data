@@ -30,6 +30,8 @@ class CreateAreaSummaries < ActiveRecord::Migration[5.0]
       t.float :pop_65_plus_percent, index: { name: 'idx_area_summary_on_pop_65_plus_pct' }
       t.float :pop_65_plus_diff_avg, index: { name: 'idx_area_summary_on_pop_65_plus_diff_avg' }
 
+      #TODO: fix 'unemployemnt' typos!
+
       t.date :unemployment_date
       t.integer :unemployment_count, index: { name: 'idx_area_summary_on_umemployment_cnt' }
       t.float :unemployemnt_percent, index: { name: 'idx_area_summary_on_umemployment_pct' }

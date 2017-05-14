@@ -5,38 +5,33 @@
   <% state_summary = constituency_area_summary.area.state.area_summary %>
   <% country_summary = constituency_area_summary.area.country.area_summary %>
 
-  <% percent_classifications = {"much higher than average" => {min:8,max:nil},
-                                "higher than average" => {min:4,max:8},
-                                "a little higher than average" => {min:2,max:4},
-                                "roughly average" => {min:-2,max:2},
-                                "a little lower than average" => {min:-4,max:-2},
-                                "lower than average" => {min:-8,max:-4},
-                                "much lower than average" => {min:nil,max:-8}} %>
+  <% stats = [{method: :pop_0_17_percent, desc:"Under 18s %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :pop_18_34_percent, desc:"18-34 %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :pop_35_49_percent, desc:"35-49 %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :pop_50_64_percent, desc:"50-64 %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :pop_65_plus_percent, desc:"65+ %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :pop_total_f_percent, desc:"Female Population %", compare_area:country_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :unemployemnt_percent, desc:"Unemployment %", compare_area:state_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :youth_unemployemnt_percent, desc:"Youth Unemployment %", compare_area:state_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :oow_benefits_percent, desc:"Out Of Work Benefits %", compare_area:state_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :incapacity_benefits_percent, desc:"Incapacity Benefits %", compare_area:state_summary, classifications:ElectionDataUtils::POPULATION_PCT_CLASS},
+              {method: :median_wage, desc:"Median Wage", compare_area:state_summary, classifications:ElectionDataUtils::WAGE_CLASS}] %>
 
-  <% wage_classifications = {"much higher than average" => {min:100,max:nil},
-                             "higher than average" => {min:40,max:100},
-                             "a little higher than average" => {min:20,max:40},
-                             "roughly average" => {min:-20,max:20},
-                             "a little lower than average" => {min:-40,max:-20},
-                             "lower than average" => {min:-100,max:-40},
-                             "much lower than average" => {min:nil,max:-100}} %>
-
-  <% stats = [{method: :pop_total_f_percent, desc:"Female Population %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :pop_0_17_percent, desc:"Under 18s %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :pop_18_34_percent, desc:"18-34 %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :pop_35_49_percent, desc:"35-49 %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :pop_50_64_percent, desc:"50-64 %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :pop_65_plus_percent, desc:"65+ %", compare_area:country_summary, classifications:percent_classifications},
-              {method: :unemployemnt_percent, desc:"Unemployment %", compare_area:state_summary, classifications:percent_classifications},
-              {method: :youth_unemployemnt_percent, desc:"Youth Unemployment %", compare_area:state_summary, classifications:percent_classifications},
-              {method: :oow_benefits_percent, desc:"Out Of Work Benefits %", compare_area:state_summary, classifications:percent_classifications},
-              {method: :incapacity_benefits_percent, desc:"Incapacity Benefits %", compare_area:state_summary, classifications:percent_classifications},
-              {method: :median_wage, desc:"Median Wage", compare_area:state_summary, classifications:wage_classifications}] %>
-
-  <% stats.map { |s| ElectionDataUtils.classify_statistic_to_s(s[:desc], s[:method], constituency_area_summary, s[:compare_area], s[:classifications]) }.each do |stat_string| %>
-    <% unless stat_string.nil? then %>
-      <p><%= stat_string %></p>
+  <ul>
+    <%# EU Referendum %>
+    <% if !constituency_area_summary.eu_ref_leave_vote_percent.nil? %>
+      <% eu_vote_class = ElectionDataUtils.classify_statistic(constituency_area_summary.eu_ref_leave_vote_percent, ElectionDataUtils::LEAVE_PCT_CLASS) %>
+      <li class="eu_vote"><span class="<%= eu_vote_class[:class] %>">
+        <%= eu_vote_class[:description] %> (estimated <%= constituency_area_summary.eu_ref_leave_vote_percent.round(2) %>% Leave)
+      </span></li>
     <% end %>
-  <% end %>
+
+    <%# Other stats %>
+    <% stats.map { |s| ElectionDataUtils.classify_statistic_to_s(s[:desc], s[:method], constituency_area_summary, s[:compare_area], s[:classifications]) }.each do |stat_string| %>
+      <% unless stat_string.nil? then %>
+        <li><%= stat_string %></li>
+      <% end %>
+    <% end %>
+  </ul>
 
 <% end %>

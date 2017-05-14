@@ -21,7 +21,7 @@ class ConstituencyElection < ApplicationRecord
   end
 
   def postal_percent
-    return nil if (valid_postal_votes_counted.nil? || total_valid_votes_counted.nil?)
-    (valid_postal_votes_counted.to_f / total_valid_votes_counted) * 100
+    return nil if (valid_postal_votes_counted.nil? || electorate_size.nil?)
+    (valid_postal_votes_counted.to_f / electorate_size) * 100
   end
 end

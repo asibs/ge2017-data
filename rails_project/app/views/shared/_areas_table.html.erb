@@ -1,0 +1,58 @@
+<% puts "RENDERING PARTIAL AREAS_TABLE" %>
+
+<table class="table table-bordered table-striped table-hover datatables order-column">
+  <tr>
+    <th></th>
+    <th colspan="5">Population Age Estimates</th>
+    <th></th>
+    <th></th>
+    <th colspan="5"></th>
+  </tr>
+  <tr>
+    <th>Area</th>
+    <th>Under 18</th>
+    <th>18 - 34</th>
+    <th>35 - 49</th>
+    <th>50 - 64</th>
+    <th>65 Plus</th>
+    <th>Female Population</th>
+    <th>Brexit Leave Vote</th>
+    <th>Median Wage</th>
+    <th>Unemployment</th>
+    <th>Youth Unemployment</th>
+    <th>Incapacity Benefits</th>
+    <th>Out of Work Benefits</th>
+  </tr>
+
+  <% areas.each do |area| %>
+    <tr>
+
+      <td>
+        <em><%= area.area_type %></em>: <strong><%= area.name %></strong>
+        <% if area.area_type == "Ward" then %>
+          (<%= link_to "Map", "https://mapit.mysociety.org/area/#{area.id}.html", target: :_blank %>)
+        <% end %>
+      </td>
+
+      <% summary = area.area_summary %>
+
+      <td><%= "#{summary.pop_0_17} (#{summary.pop_0_17_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.pop_18_34} (#{summary.pop_18_34_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.pop_35_49} (#{summary.pop_35_49_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.pop_50_64} (#{summary.pop_50_64_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.pop_65_plus} (#{summary.pop_65_plus_percent.try(:round,2)}%)" %></td>
+
+      <td><%= "#{summary.pop_total_f} (#{summary.pop_total_f_percent.try(:round,2)}%)" %></td>
+
+      <td><%= "#{summary.eu_ref_leave_vote_percent.try(:round,2)}%" %></td>
+
+      <%# TODO: fix 'unemployemnt' typos! %>
+
+      <td><%= "#{summary.median_wage}" %></td>
+      <td><%= "#{summary.unemployment_count} (#{summary.unemployemnt_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.youth_unemployment_count} (#{summary.youth_unemployemnt_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.incapacity_benefits_count} (#{summary.incapacity_benefits_percent.try(:round,2)}%)" %></td>
+      <td><%= "#{summary.oow_benefits_count} (#{summary.oow_benefits_percent.try(:round,2)}%)" %></td>
+    </tr>
+  <% end %>
+</table>
