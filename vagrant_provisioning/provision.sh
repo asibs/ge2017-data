@@ -13,6 +13,8 @@ su vagrant << EOF
     source /etc/default/locale
 
     echo "*** STEP 1 - Installing core dependencies using apt-get ***"
+    sudo apt-add-repository ppa:git-core/ppa  --yes
+
     sudo apt-get update
     sudo apt-get install -y  git  git-core  curl  zlib1g-dev  build-essential  libssl-dev  \
                              libreadline-dev  libyaml-dev  libsqlite3-dev  sqlite3  libxml2-dev  \
