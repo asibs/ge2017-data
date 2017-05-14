@@ -6,7 +6,7 @@
       <th></th>
       <th colspan="7">Previous Election</th>
       <th></th>
-      <th colspan="6">Population Estimates</th>
+      <th colspan="5">Population Estimates</th>
     </tr>
     <tr>
       <th>Name</th>
@@ -18,7 +18,6 @@
       <th>3rd Place</th>
       <th>3rd Place Vote Share (%)</th>
       <th>Brexit Leave Vote (%)</th>
-      <th>Gender Ratio (% Female)</th>
       <th>Under 18s (%)</th>
       <th>18-34 (%)</th>
       <th>35-49 (%)</th>
@@ -43,7 +42,6 @@
         <td><%= election_summary.party_3_id %></td>
         <td><%= election_summary.party_3_vote_share_percent.round(2) %></td>
         <td><%= area_summary.eu_ref_leave_vote_percent.try(:round, 2) || "Unknown" %></td>
-        <td><%= area_summary.pop_total_f_percent.try(:round, 2) || "Unknown" %></td>
         <td><%= area_summary.pop_0_17_percent.try(:round, 2) || "Unknown" %></td>
         <td><%= area_summary.pop_18_34_percent.try(:round, 2) || "Unknown" %></td>
         <td><%= area_summary.pop_35_49_percent.try(:round, 2) || "Unknown" %></td>

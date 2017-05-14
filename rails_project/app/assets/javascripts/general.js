@@ -1,6 +1,9 @@
 $(document).ready(function() {
+
     // Initialise datatables
-    var table = $('table#constituencies').DataTable( {
+    var table = $('table#constituencies')
+
+    table.DataTable( {
         "columnDefs": [ {
             "visible": false,
             "targets": -1
