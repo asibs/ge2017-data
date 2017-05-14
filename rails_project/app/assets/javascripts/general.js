@@ -1,9 +1,7 @@
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
 
     // Initialise datatables
-    var table = $('table#constituencies')
-
-    table.DataTable( {
+    $('table.datatables').DataTable( {
         "columnDefs": [ {
             "visible": false,
             "targets": -1
