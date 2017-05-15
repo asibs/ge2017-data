@@ -1,2 +1,60 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<div id="small-page">
+
+  <h1>About Us</h1>
+
+
+  <div class="rebel-collapse">
+
+    <a role="button" data-toggle="collapse" href="#who">
+      <h4><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Who are you?</h4>
+    </a>
+
+    <div class="collapse in" id="who">
+      <p>Just a concerned citizen, trying to do something constructive to help prevent a Tory victory.</p>
+    </div>
+
+  </div>
+
+
+  <div class="rebel-collapse">
+
+    <a role="button" data-toggle="collapse" href="#fund">
+      <h4><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Who funds this site?</h4>
+    </a>
+
+    <div class="collapse in" id="fund">
+      <p>No-one. It has been created in spare time, and put live on a tiny personal budget.</p>
+
+      <p>
+        If you have some spare cash you would like to donate to the cause, we recommend checking out the
+        <%= link_to "How To Help", controller: :static_pages, action: :howto %> section.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="rebel-collapse">
+
+    <a role="button" data-toggle="collapse" href="#fund">
+      <h4><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Where did you get all the data from?</h4>
+    </a>
+
+    <div class="collapse in" id="fund">
+      <p>
+        It's all from public sources, such as the
+        <%= link_to "Electoral Commission", "http://www.electoralcommission.org.uk/", target: :_blank %>,
+        the <%= link_to "Office for National Statistics", "https://www.ons.gov.uk/", target: :_blank %>,
+        and the <%= link_to "House of Commons Library", "https://www.parliament.uk/commons-library", target: :_blank %>.
+      </p>
+      <p>
+        If you would like more info, this website is Open Source, and all data
+        it uses can be found here:
+        <%= link_to "ge2017-data project on GitHub", "https://github.com/prog-allies/ge2017-data/tree/master/rails_project/db/seeds", target: :_blank %>
+      </p>
+    </div>
+
+  </div>
+
+
+</div>

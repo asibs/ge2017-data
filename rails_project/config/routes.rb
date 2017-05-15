@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#reports'
+  root 'static_pages#howto'
 
   controller :static_pages do
+    get :howto
+    get :vote
     get :reports
     get :about
   end

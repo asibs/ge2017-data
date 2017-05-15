@@ -2,6 +2,11 @@ div#content-container {
   min-height: 85vh;
 }
 
+div#small-page {
+  max-width: 1200px;
+  margin: auto;
+}
+
 table.party {
 
   th { background-color: #FDFDFD }

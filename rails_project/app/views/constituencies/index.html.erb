@@ -10,6 +10,7 @@
     </tr>
     <tr>
       <th>Name</th>
+      <th>Region</th>
       <th>Winner</th>
       <th>Vote Share (%)</th>
       <th>Majority</th>
@@ -34,6 +35,7 @@
 
       <tr>
         <td><%= link_to c.name, c %></td>
+        <td><%= c.region.name %></td>
         <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_id %></td>
         <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_vote_share_percent.round(2) %></td>
         <td class="<%= election_summary.party_1_id %>"><%= election_summary.party_1_ahead_behind %></td>
