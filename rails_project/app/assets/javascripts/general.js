@@ -1,12 +1,7 @@
 $( document ).on('turbolinks:load', function() {
 
     // Initialise datatables
-    $('table#constituencies').DataTable( {
-        "columnDefs": [ {
-            "visible": false,
-            "targets": -1
-        } ]
-    } );
+    $('table#constituencies').DataTable();
 
 } );
 

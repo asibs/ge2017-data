@@ -1,6 +1,6 @@
 class ConstituenciesController < ApplicationController
   def index
-    @constituencies = Constituency.includes(:area_summary, most_recent_election_result: :constituency_election_summary).all.to_a
+    @constituencies = Constituency.includes(:region, :area_summary, most_recent_election_result: :constituency_election_summary).all.to_a
 
     if (params[:p18_34]) then
       puts "filtering constituencies based on youth vote"

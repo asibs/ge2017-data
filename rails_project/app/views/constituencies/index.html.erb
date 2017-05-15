@@ -3,7 +3,7 @@
 <table id="constituencies" class="table table-bordered party datatables order-column" cellspacing="0" width="100%">
   <thead>
     <tr>
-      <th></th>
+      <th colspan="2"></th>
       <th colspan="7">Previous Election</th>
       <th></th>
       <th colspan="5">Population Estimates</th>
@@ -29,7 +29,6 @@
 
   <tbody>
     <% @constituencies.each do |c| %>
-      <% p c %>
       <% election_summary = c.most_recent_election_result.summary %>
       <% area_summary = c.area_summary %>
 
