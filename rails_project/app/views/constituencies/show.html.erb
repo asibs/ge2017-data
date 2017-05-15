@@ -18,19 +18,31 @@
   </div>
 <% end %>
 
-<h3>Demographic Summary</h3>
-<%= render partial: "shared/constituency_area_summary", object: @constituency.area_summary %>
+<div class="row">
+  <div class="col-md-12 col-lg-6">
+    <h3>Demographic Summary</h3>
+    <%= render partial: "shared/constituency_area_summary", object: @constituency.area_summary %>
+  </div>
+</div>
 
-<h3>Population of Wards</h3>
-<% areas = [@constituency] %>
-<% @constituency.wards.each { |ward| areas << ward } %>
-<%= render partial: "shared/areas_population_summary", locals: { areas: areas } %>
+<div class="row">
+  <div class="col-md-12 col-lg-6">
+    <h3>Population of Wards</h3>
+    <% areas = [@constituency] %>
+    <% @constituency.wards.each { |ward| areas << ward } %>
+    <%= render partial: "shared/areas_population_summary", locals: { areas: areas } %>
+  </div>
+</div>
 
-<h3>More Data</h3>
-<h4>Population Graph</h4>
-<% @constituency.population_estimates.each do |pop_est| %>
-  <p><%= pop_est.estimate_description %></p>
-  <%= column_chart pop_est.population_hash, stacked: true %>
-  <%# column_chart pop_est.population_hash([[0,17], [18,34], [35,49], [50,64], [65,90]]), stacked: true %>
-  <%# pie_chart pop_est.gender_hash, library: {pieSliceText:'value-and-percentage'} %>
-<% end %>
+<div class="row">
+  <div class="col-lg-12">
+    <h3>More Data</h3>
+    <h4>Population Graph</h4>
+    <% @constituency.population_estimates.each do |pop_est| %>
+      <p><%= pop_est.estimate_description %></p>
+      <%= column_chart pop_est.population_hash, stacked: true %>
+      <%# column_chart pop_est.population_hash([[0,17], [18,34], [35,49], [50,64], [65,90]]), stacked: true %>
+      <%# pie_chart pop_est.gender_hash, library: {pieSliceText:'value-and-percentage'} %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <% puts "RENDERING PARTIAL CONSTITUENCY_POPULATION_SUMMARY" %>
 
-<table class="table table-bordered table-striped table-hover">
+<table id="population-summary" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
   <tr>
     <th>Area</th>
     <% PopulationEstimate::STANDARD_AGE_RANGES.each do |age_range| %>
