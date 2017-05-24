@@ -8,6 +8,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <% if @og[:title] %>
+      <%= tag :meta, property: 'og:title', content: @og[:title] %>
+    <% end %>
+    <% if @og[:description] %>
+      <%= tag :meta, property: 'og:description', content: @og[:description] %>
+    <% end %>
+    <% if @og[:image] %>
+      <%= tag :meta, property: 'og:image', content: image_url(@og[:image]) %>
+    <% end %>
   </head>
 
   <body>
@@ -24,10 +35,10 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li><%= link_to "How To Help", controller: :static_pages, action: :howto %></li>
-            <li><%= link_to "Voting", controller: :static_pages, action: :vote %></li>
-            <li><%= link_to "About", controller: :static_pages, action: :about %></li>
-            <li><%= link_to "Reports", controller: :static_pages, action: :reports %></li>
+            <%= "<li #{'class="active"' if @page==:howto}>".html_safe %><%= link_to "How To Help", controller: :static_pages, action: :howto %></li>
+            <%= "<li #{'class="active"' if @page==:vote}>".html_safe %><%= link_to "Voting", controller: :static_pages, action: :vote %></li>
+            <%= "<li #{'class="active"' if @page==:about}>".html_safe %><%= link_to "About", controller: :static_pages, action: :about %></li>
+            <%= "<li #{'class="active"' if @page==:reports}>".html_safe %><%= link_to "Reports", controller: :static_pages, action: :reports %></li>
           </ul>
         </div>
       </div>

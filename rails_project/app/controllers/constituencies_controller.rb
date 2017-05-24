@@ -1,5 +1,12 @@
 class ConstituenciesController < ApplicationController
   def index
+    @page = :reports
+
+    @og = {}
+    @og[:title] = 'The Rebel Alliance: Constituencies'
+    @og[:description] = "Find out more about the constituencies in this election."
+    @og[:image] = nil
+
     @constituencies = Constituency.includes(:region, :area_summary, most_recent_election_result: :constituency_election_summary).all.to_a
 
     if (params[:p18_34]) then
@@ -14,7 +21,14 @@ class ConstituenciesController < ApplicationController
   end
 
   def show
+    @page = :reports
+
     @constituency = Constituency.find_by(id: params[:id])
+
+    @og = {}
+    @og[:title] = "The Rebel Alliance: #{@constituency.name}"
+    @og[:description] = "Find out more about #{@constituency.name}."
+    @og[:image] = nil
   end
 
 
