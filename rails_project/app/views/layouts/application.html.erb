@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <%= tag :meta, property: 'og:url', content: request.original_url %>
     <% if @og[:title] %>
       <%= tag :meta, property: 'og:title', content: @og[:title] %>
     <% end %>
